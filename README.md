@@ -9,7 +9,7 @@
    
 ## Document
 
-Our team contract, team proposal and FP_Log can be find 
+Our team contract, team proposal and FP_Log can be find in /document directory.
 
 ## Dataset Acquisition
 
