@@ -9,7 +9,7 @@
    
 ## Document
 
-Our team contract, team proposal and FP_Log can be find in /document directory.
+Our team contract, team proposal and FP_Log can be find in `/document` directory.
 
 ## Dataset Acquisition
 
@@ -19,7 +19,7 @@ We use data of airport and route:
 https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat
 https://raw.githubusercontent.com/jpatokal/openflights/master/data/routes.dat
 
-which can be find in /data directory.
+which can be find in `/data` directory.
 
 
 ## Timeline
