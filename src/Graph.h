@@ -9,5 +9,4 @@ class Graph {
         Graph();
         void addEdge(int airportID1, int airportID2);
         std::vector<Airport> findShortestPath();
-        //
 };
