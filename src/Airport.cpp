@@ -18,5 +18,5 @@ Airport::Airport(Airport &other) {
 }
 
 Airport Airport::operator=(const Airport & other) {
-
+    
 }
