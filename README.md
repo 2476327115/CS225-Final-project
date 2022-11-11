@@ -24,11 +24,13 @@ which can be find in `/data` directory.
 
 ## Timeline
 
-data acquisition and processing (due: 11.6)
+Data acquisition and processing (due: 11.6)
 
-design write openflight algorithms(due: 11.13)
+Design openflight algorithms and write all the preliminary code except the algorithm(due: 11.13)
 
-write code completely(due: 11.27)
+Write BFS and Dijkstra’s Algorithm(due: 11.20)
+
+Write Page Rank algorithm and other code completely(due: 11.27)
 
 Write descriptive README and final report(due: 12.4)
 
