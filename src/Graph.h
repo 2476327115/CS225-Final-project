@@ -5,17 +5,23 @@
 #include <string>
 #include <unordered_map>
 #include <Airport.h>
-#include <Route.h>
+#include <Edge.h>
 
 class Graph {
     private:
+        std::unordered_map<Airport, std::unordered_map<Airport, Edge>> adjacency_matrix;
+        std::vector<Airport> Airports;
+        
         
 
     public:
         Graph();
-        void insertVertex(const std::string& filename);
-        void insertEdges(const std::string& filename);
-        void addVertex();
-        void addEdge(int airportID1, int airportID2);
+        
+        void parseVertices(const std::string& filename);
+        void parseEdges(const std::string& filename);
+        void insertVertex();
+        void insertEdge(int airportID1, int airportID2);
+        void createGraph();
+
         std::vector<Airport> findShortestPath();
 };
