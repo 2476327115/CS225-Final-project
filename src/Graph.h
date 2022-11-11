@@ -1,9 +1,11 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <Airport.h>
 
 class Graph {
     private:
+        std::vector<Airport> Airports;
 
     public:
         Graph();
