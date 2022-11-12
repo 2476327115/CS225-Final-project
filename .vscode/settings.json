@@ -3,6 +3,8 @@
         "functional": "cpp",
         "memory": "cpp",
         "string": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "unordered_map": "cpp",
+        "__hash_table": "cpp"
     }
 }
