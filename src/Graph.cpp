@@ -3,6 +3,11 @@
 #include <iostream>
 #include <string>
 
+Graph::Graph(std::string& Airport_File, std::string& Route_File){
+    parseVertices(Airport_File);
+    parseEdges(Route_File);
+}
+
 
 void Graph::parseVertices(const std::string& filename){
     std::ifstream Ap_File(filename);
@@ -21,7 +26,7 @@ void Graph::parseVertices(const std::string& filename){
             int count = 0;
             int flag = 0;
             for(count = 0; count < data.size(); count++){
-                if(data[count] == data.begin()){
+                if(count = 0){
                     while(data[count] != ','){   
                         ID.push_back(data[count]);  
                         count++;         
@@ -60,24 +65,60 @@ void Graph::parseVertices(const std::string& filename){
             Airport airport(ID, Name, City, latitude, longtitude);
             // Airports.push_back(airport);
             insertVertex(ID, airport);
-
-            // Airports.push_back(ID);
-            // Airports.push_back(Name);
-            // Airports.push_back(City);
-            // Airports.push_back(latitude);
-            // Airports.push_back(longtitude);
         }
     }
+    Ap_File.close();
 }
 
 void Graph::parseEdges(const std::string& filename){
-    ifstream wordsFile(filename);
+    ifstream Route_File(filename);
     std::string word;
-    if (wordsFile.is_open()) {
+    if (Route_File.is_open()) {
         /* Reads a line from `wordsFile` into `word` until the file ends. */
+
+        BA,1355,SIN,3316,LHR,507,,0,744 777
         while (getline(wordsFile, word)) {
+            int count = 0;
+            int flag = 0;
+            for(count = 0; count < word.size(); count++){
+                if(count == 0){
+                    while(word[count] != ','){   
+                        ID.push_back(data[count]);  
+                        count++;         
+                    }
+                    flag++;
+                }
+                if(data[count] == '"'){
+                    flag++;
+                    count++;
+                    if(flag == 2){
+                        while(data[count] != '"'){   
+                            Name.push_back(data[count]);  
+                            count++;         
+                        }
+                    }
+                    if(flag == 3){
+                        while(data[count] != '"'){   
+                            City.push_back(data[count]);  
+                            count++;         
+                        }
+                    }
+                    if(flag == 7){
+                        while(data[count] != '"'){   
+                            latitude.push_back(data[count]);  
+                            count++;         
+                        }
+                    }
+                    if(flag == 8){
+                        while(data[count] != '"'){   
+                            longtitude.push_back(data[count]);  
+                            count++;         
+                        }
+                    }
+                }
             
     }
+    Route_File.close();
 }
 }
 
