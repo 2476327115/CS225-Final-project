@@ -115,9 +115,9 @@ src/clean: src/CMakeFiles/src.dir/clean
 # Target rules for target CMakeFiles/main.dir
 
 # All Build rule for target.
+CMakeFiles/main.dir/all: lib/CMakeFiles/lodepng.dir/all
 CMakeFiles/main.dir/all: lib/CMakeFiles/cs225.dir/all
 CMakeFiles/main.dir/all: src/CMakeFiles/src.dir/all
-CMakeFiles/main.dir/all: lib/CMakeFiles/lodepng.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspaces/CS225-Final-project/build/CMakeFiles --progress-num=6,7 "Built target main"
@@ -125,7 +125,7 @@ CMakeFiles/main.dir/all: lib/CMakeFiles/lodepng.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/CS225-Final-project/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/CS225-Final-project/build/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/CS225-Final-project/build/CMakeFiles 0
 .PHONY : CMakeFiles/main.dir/rule
@@ -195,16 +195,16 @@ lib/CMakeFiles/cs225.dir/clean:
 # Target rules for target src/CMakeFiles/src.dir
 
 # All Build rule for target.
-src/CMakeFiles/src.dir/all: lib/CMakeFiles/cs225.dir/all
 src/CMakeFiles/src.dir/all: lib/CMakeFiles/lodepng.dir/all
+src/CMakeFiles/src.dir/all: lib/CMakeFiles/cs225.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspaces/CS225-Final-project/build/CMakeFiles --progress-num=8,9 "Built target src"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspaces/CS225-Final-project/build/CMakeFiles --progress-num=8,9,10,11,12 "Built target src"
 .PHONY : src/CMakeFiles/src.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/src.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/CS225-Final-project/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/CS225-Final-project/build/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/src.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/CS225-Final-project/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/src.dir/rule

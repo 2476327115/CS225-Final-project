@@ -1,19 +1,20 @@
-#include <Graph.h>
+#include "Graph.h"
 #include <fstream>
 #include <iostream>
+#include <string>
 
 
-void insertVertices(const std::string& filename){
+void Graph::parseVertices(const std::string& filename){
     std::ifstream Ap_File(filename);
-    string ID;
-    string Name;
-    string City;
-    stirng latitude;
-    string longtitude;
+    std::string ID;
+    std::string Name;
+    std::string City;
+    std::string latitude;
+    std::string longtitude;
     if (Ap_File.is_open()) {
         std::string word;
         while (getline(Ap_File, word)) {
-            vector<char> data;
+            std::vector<char> data;
             for(int i = 0; i < word.size(); i++){
                 data[i].push_back(word);
             }
@@ -56,11 +57,33 @@ void insertVertices(const std::string& filename){
                     }
                 }
             }
-            Airports.push_back(ID);
-            Airports.push_back(Name);
-            Airports.push_back(City);
-            Airports.push_back(latitude);
-            Airports.push_back(longtitude);
+            Airport airport(ID, Name, City, latitude, longtitude);
+            // Airports.push_back(airport);
+            insertVertex(ID, airport);
+
+            // Airports.push_back(ID);
+            // Airports.push_back(Name);
+            // Airports.push_back(City);
+            // Airports.push_back(latitude);
+            // Airports.push_back(longtitude);
         }
     }
 }
+
+void Graph::parseEdges(const std::string& filename){
+    ifstream wordsFile(filename);
+    std::string word;
+    if (wordsFile.is_open()) {
+        /* Reads a line from `wordsFile` into `word` until the file ends. */
+        while (getline(wordsFile, word)) {
+            
+    }
+}
+}
+
+void Graph::insertVertex(int ID, Airport airport){
+    Airports[ID] = airport;
+}
+
+void Graph::insertEdge(int airportID1, int airportID2);
+
