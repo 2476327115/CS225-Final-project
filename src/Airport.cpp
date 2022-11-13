@@ -18,5 +18,10 @@ Airport::Airport(Airport &other) {
 }
 
 Airport Airport::operator=(const Airport & other) {
-    
+    id_ = other.id_;
+    name_ = other.name_;
+    city_ = other.city_;
+    latitude_ = other.latitude_;
+    longitude_ = other.longitude_;
+    return *this;
 }
