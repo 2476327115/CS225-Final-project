@@ -1,5 +1,6 @@
 #include "Graph.h"
 #include <fstream>
+#include <iterator>
 #include <iostream>
 #include <string>
 #include <unordered_map>
@@ -156,6 +157,36 @@ void Graph::insertVertex(int ID, Airport airport){
 }
 
 void Graph::insertEdge(Route route, int srcID, int dstID){
+
+}
+
+//std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
+
+
+
+std::vector<Airport> Graph::findShortestPath(){
+
+
+}
+
+int minWeight(std::unordered_map<int,std::string> dist,std::unordered_map<int,bool> sptSet){
+
+}
+
+std::unordered_map<int,std::string> Graph::dijkstra(int srcID){
+    std::unordered_map<int,std::string> dist;
+    std::unordered_map<int,bool> sptSet; 
+    std::unordered_map<int, Airport>::iterator itr;
+    for(itr = Airports.begin();itr!=Airports.end();itr++){
+        sptSet[itr->first]=false;
+    }
+    dist[srcID]=std::to_string(srcID);
+    for(int count=0;count<Airports.size()-1;count++){
+        int minweight = minWeight(dist,sptSet);
+        
+    }
+    
+
 
 }
 

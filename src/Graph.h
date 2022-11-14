@@ -12,6 +12,7 @@ class Graph {
     private:
     // 
         mutable std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
+        //                        sourseID                destID
         // std::vector<Airport> Airports;
         mutable std::unordered_map<int, Airport> Airports;
         
@@ -27,4 +28,7 @@ class Graph {
         // void createGraph();
 
         std::vector<Airport> findShortestPath();
+        std::unordered_map<int,std::string> dijkstra(int srcID);
+        double minWeight(std::unordered_map<int,std::string> dist,std::unordered_map<int,bool> sptSet);
+        
 };
