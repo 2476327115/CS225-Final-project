@@ -14,11 +14,14 @@ Edge::Edge(Route Route){
     int AirlineID = Route.getAirlineID();
     Routes_[AirlineID] = Route;
     weights_++;
+    srcID_ = Route.getsrcID();
+    dstID_ = Route.getdstID();
 }
 
 void Edge::addRoute(Route Route){
+    if(Route.getsrcID() != srcID_ || Route.getdstID() != dstID_) return;
     int AirlineID = Route.getAirlineID();
-    if(Routes_.contains(AirlineID)) return;
+    if(Routes_.find(AirlineID) != Routes_.end()) return;
     Routes_[AirlineID] = Route;
     weights_++;
 }
