@@ -20,12 +20,12 @@ void Graph::parseVertices(const std::string& filename){
         std::string word;
         while (getline(Ap_File, word)) {
             std::vector<char> data;
-            for(int i = 0; i < word.size(); i++){
+            for(int i = 0; i < (int) word.size(); i++){
                 data.push_back(word[i]);
             }
             int count = 0;
             int flag = 0;
-            for(count = 0; count < data.size(); count++){
+            for(count = 0; count < (int) data.size(); count++){
                 if(count == 0){
                     while(data[count] != ','){   
                         ID.push_back(data[count]);  
@@ -62,22 +62,23 @@ void Graph::parseVertices(const std::string& filename){
                     }
                 }
             }
-            Airport airport(ID, Name, City, latitude, longtitude);
+            int Id = std::stoi(ID);
+            Airport airport(Id, Name, City, latitude, longtitude);
             // Airports.push_back(airport);
-            insertVertex(ID, airport);
+            insertVertex(Id, airport);
         }
     }
     Ap_File.close();
 }
 
 void Graph::parseEdges(const std::string& filename){
-    ifstream Route_File(filename);
+    std::ifstream Route_File(filename);
     std::string word;
     if (Route_File.is_open()) {
         /* Reads a line from `wordsFile` into `word` until the file ends. */
 
-        BA,1355,SIN,3316,LHR,507,,0,744 777
-        while (getline(wordsFile, word)) {
+        // BA,1355,SIN,3316,LHR,507,,0,744 777
+        while (getline(Route_File, word)) {
             int count = 0;
             int flag = 0;
             for(count = 0; count < word.size(); count++){
