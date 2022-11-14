@@ -14,3 +14,7 @@ Route::Route(int AirlineID, std::string Airline, int srcID, int dstID, int stop)
     dstID_ = dstID;
     stop_ = stop;
 }
+
+int Route::getAirlineID(){
+    return AirlineID_;
+}
