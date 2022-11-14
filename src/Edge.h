@@ -1,18 +1,19 @@
 #pragma once
 #include "Route.h"
 #include <vector>
+#include <unordered_map>
 
 
 // to do
 class Edge {
     public:
     Edge();
-    Edge(std::vector<Route> Routes, int weights);
+    Edge(std::unordered_map<int, Route> Routes, int weights);
     int getWeights();
     void calculateWeights();
  
     private:
-    std::vector<Route> Routes_;
+    std::unordered_map<int, Route> Routes_;
     int weights_;
 };
 

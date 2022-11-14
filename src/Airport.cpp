@@ -1,6 +1,15 @@
 #include "Airport.h"
 
 // Constructor
+Airport::Airport(){
+    id_ = 0;
+    name_ = "";
+    city_ = "";
+    latitude_ = "";
+    longitude_ = "";
+
+}
+
 Airport::Airport(int id, std::string name, std::string city, std::string latitude, std::string longitude) {
     id_ = id;
     name_ = name;

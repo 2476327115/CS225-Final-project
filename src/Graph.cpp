@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <unordered_map>
+#include "Airport.h"
 
 Graph::Graph(std::string& Airport_File, std::string& Route_File){
     parseVertices(Airport_File);
@@ -74,58 +76,86 @@ void Graph::parseVertices(const std::string& filename){
 void Graph::parseEdges(const std::string& filename){
     std::ifstream Route_File(filename);
     std::string word;
+
+    std::string Airline;
+    std::string AirlineID;
+    std::string srcID;
+    std::string dstID;
+    std::string stop;
+
     if (Route_File.is_open()) {
         /* Reads a line from `wordsFile` into `word` until the file ends. */
-
+        // Route(int AirlineID, std::string Airline, int srcID, int dstID, int stop){
         // BA,1355,SIN,3316,LHR,507,,0,744 777
         while (getline(Route_File, word)) {
-            int count = 0;
-            int flag = 0;
-            for(count = 0; count < word.size(); count++){
+            for(int count = 0; count < (int) word.size(); count++){
+                int flag = 0;
+                if(word.find("\\N") == std::string::npos) break;
                 if(count == 0){
                     while(word[count] != ','){   
-                        ID.push_back(data[count]);  
+                        Airline.push_back(word[count]);  
                         count++;         
                     }
                     flag++;
+                    continue;
                 }
-                if(data[count] == '"'){
-                    flag++;
-                    count++;
-                    if(flag == 2){
-                        while(data[count] != '"'){   
-                            Name.push_back(data[count]);  
+                if(word[count] != ','){
+                    if(flag == 1){
+                        while(word[count] != ','){   
+                            AirlineID.push_back(word[count]);  
                             count++;         
                         }
+                        flag++;
+                        continue;
+
                     }
                     if(flag == 3){
-                        while(data[count] != '"'){   
-                            City.push_back(data[count]);  
+                        while(word[count] != ','){   
+                            srcID.push_back(word[count]);  
                             count++;         
                         }
+                        flag++;
+                        continue;
                     }
-                    if(flag == 7){
-                        while(data[count] != '"'){   
-                            latitude.push_back(data[count]);  
+                    if(flag == 5){
+                        while(word[count] != ','){   
+                            dstID.push_back(word[count]);  
                             count++;         
                         }
+                        flag++;
+                        continue;
                     }
-                    if(flag == 8){
-                        while(data[count] != '"'){   
-                            longtitude.push_back(data[count]);  
+                    if(flag == 6){
+                        while(word[count] != ','){   
+                            stop.push_back(word[count]);  
                             count++;         
                         }
+                        break;
                     }
+                    while(word[count] != ','){
+                        count++;
+                    }
+
                 }
             
+            }
+            int AirlineId = std::stoi(AirlineID);
+            int srcId = std::stoi(srcID);
+            int dstId = std::stoi(dstID);
+            int stop_int = std::stoi(stop);
+            Route route(AirlineId, Airline, srcId, dstId, stop_int);
+            insertEdge(route, srcId, dstId);
+    
+        }
+        Route_File.close();
     }
-    Route_File.close();
-}
 }
 
 void Graph::insertVertex(int ID, Airport airport){
     Airports[ID] = airport;
 }
 
-void Graph::insertEdge(int airportID1, int airportID2);
+void Graph::insertEdge(Route route, int srcID, int dstID){
+
+}
 

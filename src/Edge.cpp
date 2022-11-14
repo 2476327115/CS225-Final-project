@@ -1,6 +1,7 @@
 #include "Edge.h"
+#include <unordered_map>
 
-Edge::Edge(std::vector<Route> Routes, int weights) {
+Edge::Edge(std::unordered_map<int, Route> Routes, int weights) {
     Routes_ = Routes;
     weights_ = weights;
 }
