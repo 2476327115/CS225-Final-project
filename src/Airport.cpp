@@ -17,6 +17,6 @@ Airport::Airport(Airport &other) {
     longitude_ = other.longitude_;
 }
 
-Airport Airport::operator=(const Airport & other) {
+// Airport Airport::operator=(const Airport & other) {
     
-}
+// }

@@ -1,26 +1,26 @@
 #include <Graph.h>
 #include <fstream>
 #include <iostream>
+using namespace std;
 
-
-void insertVertices(const std::string& filename){
+void parseVertices(const std::string& filename){
     std::ifstream Ap_File(filename);
     string ID;
     string Name;
     string City;
-    stirng latitude;
+    string latitude;
     string longtitude;
     if (Ap_File.is_open()) {
         std::string word;
         while (getline(Ap_File, word)) {
             vector<char> data;
-            for(int i = 0; i < word.size(); i++){
-                data[i].push_back(word);
+            for(unsigned i = 0; i < word.size(); i++){
+                data.push_back(word.at(i));
             }
-            int count = 0;
+            unsigned count = 0;
             int flag = 0;
             for(count = 0; count < data.size(); count++){
-                if(data[count] == data.begin()){
+                if(data[count] == data.front()){
                     while(data[count] != ','){   
                         ID.push_back(data[count]);  
                         count++;         
@@ -56,11 +56,12 @@ void insertVertices(const std::string& filename){
                     }
                 }
             }
-            Airports.push_back(ID);
-            Airports.push_back(Name);
-            Airports.push_back(City);
-            Airports.push_back(latitude);
-            Airports.push_back(longtitude);
+            vector<string> temp;
+            temp.push_back(ID);
+            temp.push_back(Name);
+            temp.push_back(City);
+            temp.push_back(latitude);
+            temp.push_back(longtitude);
         }
     }
 }
