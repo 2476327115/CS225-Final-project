@@ -9,7 +9,7 @@ Airport::Airport(int id, std::string name, std::string city, std::string latitud
     longitude_ = longitude;
 }
 
-Airport::Airport(Airport &other) {
+Airport::Airport(const Airport& other){
     id_ = other.id_;
     name_ = other.name_;
     city_ = other.city_;
