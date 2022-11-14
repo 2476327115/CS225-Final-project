@@ -156,6 +156,8 @@ void Graph::insertVertex(int ID, Airport airport){
 }
 
 void Graph::insertEdge(Route route, int srcID, int dstID){
-
+    if(Airports.find(srcID) != Airports.end() && Airports.find(dstID) != Airports.end()){
+        
+    }
 }
 
