@@ -28,7 +28,6 @@ class Graph {
         // void createGraph();
 
         std::vector<Airport> findShortestPath();
-        std::unordered_map<int,std::string> dijkstra(int srcID);
-        double minWeight(std::unordered_map<int,std::string> dist,std::unordered_map<int,bool> sptSet);
+        
         
 };
