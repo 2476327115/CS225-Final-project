@@ -23,7 +23,7 @@ class Graph {
         void parseVertices(const std::string& filename);
         void parseEdges(const std::string& filename);
         void insertVertex(int ID, Airport airport);
-        void insertEdge(int airportID1, int airportID2);
+        void insertEdge(Route route, int srcID, int dstID);
         // void createGraph();
 
         std::vector<Airport> findShortestPath();
