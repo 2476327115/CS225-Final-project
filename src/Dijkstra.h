@@ -11,12 +11,20 @@
 
 class Dijkstra {
     public:
-
+    Dijkstra (Graph graph, int srcID, int dstID);
+    std::vector<Airport> findShortestPath();
     std::unordered_map<int,std::string> dijkstra(int srcID);
-    int minWeight(std::unordered_map<int,std::string> dist,std::unordered_map<int,bool> sptSet);
+    int minWeight(int srcID,std::unordered_map<int,bool> sptSet);
+    void insertWeightmatrix();
+    void insertAdjacencymatrix();
+    void insertAirports();
 
     private:
-    
 
-}
+    mutable std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
+    mutable std::unordered_map<int, std::unordered_map<int, double>> weight_matrix;
+    mutable std::unordered_map<int, Airport> Airports_;
+    int NumAirports;
+
+};
 
