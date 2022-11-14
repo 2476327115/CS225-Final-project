@@ -156,8 +156,19 @@ void Graph::insertVertex(int ID, Airport airport){
 }
 
 void Graph::insertEdge(Route route, int srcID, int dstID){
-    if(Airports.find(srcID) != Airports.end() && Airports.find(dstID) != Airports.end()){
-        
+    if(adjacency_matrix.find(srcID) != adjacency_matrix.end() && adjacency_matrix[srcID].find(dstID) != adjacency_matrix[srcID].end()){
+        return;
     }
+    if(adjacency_matrix.find(srcID) == adjacency_matrix.end()){
+        adjacency_matrix[srcID] = std::unordered_map<int, Edge>();
+    }
+    if(adjacency_matrix[srcID].find(dstID) == adjacency_matrix[srcID].end()){
+        adjacency_matrix[srcID][dstID] = Edge(route);
+    }
+    else{
+        Edge edge = adjacency_matrix[srcID][dstID];
+        edge.addRoute(route);
+    }
+
 }
 

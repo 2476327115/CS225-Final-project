@@ -17,5 +17,7 @@ class Edge {
     private:
     std::unordered_map<int, Route> Routes_;
     int weights_;
+    int srcID_;
+    int dstID_;
 };
 
