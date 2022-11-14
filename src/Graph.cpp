@@ -21,12 +21,12 @@ void Graph::parseVertices(const std::string& filename){
         while (getline(Ap_File, word)) {
             std::vector<char> data;
             for(int i = 0; i < word.size(); i++){
-                data[i].push_back(word);
+                data.push_back(word[i]);
             }
             int count = 0;
             int flag = 0;
             for(count = 0; count < data.size(); count++){
-                if(count = 0){
+                if(count == 0){
                     while(data[count] != ','){   
                         ID.push_back(data[count]);  
                         count++;         

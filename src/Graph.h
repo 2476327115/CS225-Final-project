@@ -11,9 +11,9 @@
 class Graph {
     private:
     // 
-        std::unordered_map<Airport, std::unordered_map<Airport, Edge>> adjacency_matrix;
+        mutable std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
         // std::vector<Airport> Airports;
-        std::unordered_map<int, Airport> Airports;
+        // mutable std::unordered_map<int, Airport> Airports;
         
         
 
