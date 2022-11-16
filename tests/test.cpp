@@ -1,5 +1,9 @@
 #include <catch2/catch_test_macros.hpp>
 
+#include "Graph.h"
+
 TEST_CASE("TEST GRAPH") {
-    Graph graph = new Graph("Airport_test.dat", "Route_test.dat");
+    std::string airportFilename = "Airport_test.dat";
+    std::string routeFilename = "Route_test.dat";
+    Graph graph = Graph(airportFilename, routeFilename);
 }

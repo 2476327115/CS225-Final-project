@@ -45,3 +45,13 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
   file(TOUCH_NOCREATE "/workspaces/CS225-Final-project/build/CMakeFiles/cmake.verify_globs")
 endif()
+
+# tests_src at CMakeLists.txt:128 (file)
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/workspaces/CS225-Final-project/tests/*.cpp")
+set(OLD_GLOB
+  "/workspaces/CS225-Final-project/tests/test.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/workspaces/CS225-Final-project/build/CMakeFiles/cmake.verify_globs")
+endif()

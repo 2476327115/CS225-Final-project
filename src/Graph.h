@@ -25,6 +25,6 @@ class Graph {
         void insertVertex(int ID, Airport airport);
         void insertEdge(Route route, int srcID, int dstID);
         // void createGraph();
-
+        void printGraph();
         std::vector<Airport> findShortestPath();
 };

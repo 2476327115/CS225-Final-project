@@ -125,14 +125,14 @@ add_subdirectory(${lib_dir})
 add_subdirectory(${src_dir})
 
 # Add the Catch2 entrypoint using Catch2, our libs and src code.
-# file(GLOB_RECURSE tests_src CONFIGURE_DEPENDS ${tests_dir}/*.cpp)
+file(GLOB_RECURSE tests_src CONFIGURE_DEPENDS ${tests_dir}/*.cpp)
 
-# include(Catch)
+include(Catch)
 
-# add_executable(test ${tests_src})
-# target_link_libraries(test PRIVATE Catch2::Catch2WithMain libs src)
+add_executable(test ${tests_src})
+target_link_libraries(test PRIVATE Catch2::Catch2WithMain libs src)
 
-# catch_discover_tests(test)
+catch_discover_tests(test)
 
 # Add the assignment entrypoints using our libs and src code.
 foreach(entrypoint IN LISTS assignment_entrypoints)
