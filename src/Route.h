@@ -6,6 +6,9 @@ class Route{
     public:
         Route();
         Route(int AirlineID, std::string Airline, int srcID, int dstID, int stop);
+        int getAirlineID();
+        int getsrcID();
+        int getdstID();
     private:
         int AirlineID_;
         std::string Airline_;
