@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 /usr/bin/ar qc libsrc.a CMakeFiles/src.dir/Airport.cpp.o
 /usr/bin/ranlib libsrc.a
+=======
+/usr/bin/ar qc libsrc.a CMakeFiles/src.dir/Airport.cpp.o CMakeFiles/src.dir/Edge.cpp.o CMakeFiles/src.dir/Graph.cpp.o CMakeFiles/src.dir/Route.cpp.o
+/usr/bin/ranlib libsrc.a
+>>>>>>> jinfan
