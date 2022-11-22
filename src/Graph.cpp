@@ -5,6 +5,7 @@
 #include <string>
 #include <unordered_map>
 #include "Airport.h"
+#include "Edge.h"
 
 Graph::Graph(std::string& Airport_File, std::string& Route_File){
     parseVertices(Airport_File);
@@ -172,6 +173,13 @@ void Graph::insertEdge(Route route, int srcID, int dstID){
         edge.addRoute(route);
     }
 
+}
+
+std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getMatrix(){
+   return adjacency_matrix;
+}
+std::unordered_map<int, Airport> Graph::getAirports(){
+   return Airports;
 }
 
 //std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;

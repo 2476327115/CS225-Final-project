@@ -2,16 +2,20 @@
 #include <iterator>
 #include <iostream>
 #include <string>
+#include <queue>
 #include <unordered_map>
 #include "Dijkstra.h"
 Dijkstra::Dijkstra (Graph graph, int srcID, int dstID){
+    insertAdjacencymatrix(graph);
+    insertAirports(graph);
+    
+}
 
+void Dijkstra::insertAdjacencymatrix(Graph graph){
+    this->adjacency_matrix=graph.getMatrix(); 
 }
-void Dijkstra::insertAdjacencymatrix(){
-    return ;
-}
-void Dijkstra::insertAirports(){
-    return ;
+void Dijkstra::insertAirports(Graph graph){
+    this->Airports_=graph.getAirports();
 }
 void Dijkstra::insertWeightmatrix(){
     //mutable std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
@@ -52,6 +56,7 @@ std::unordered_map<int,std::string> Dijkstra::dijkstra(int srcID){
     std::unordered_map<int,double> distweight;
     std::unordered_map<int,bool> sptSet; 
     std::unordered_map<int, Airport>::iterator itr;
+    
     for(itr = Airports_.begin();itr!=Airports_.end();++itr){
         sptSet[itr->first]=false;
         dist[itr->first]=std::to_string(srcID)+' ';
