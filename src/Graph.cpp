@@ -1,5 +1,6 @@
 #include "Graph.h"
 #include <fstream>
+#include <iterator>
 #include <iostream>
 #include <string>
 #include <unordered_map>
@@ -149,10 +150,19 @@ void Graph::parseEdges(const std::string& filename){
         }
         Route_File.close();
     }
+<<<<<<< Updated upstream
 }
+=======
+    Route_File.close();
+    }
+    }
+}
+
+>>>>>>> Stashed changes
 
 void Graph::insertVertex(int ID, Airport airport){
     Airports[ID] = airport;
+    
 }
 
 void Graph::insertEdge(Route route, int srcID, int dstID){
@@ -172,6 +182,14 @@ void Graph::insertEdge(Route route, int srcID, int dstID){
 
 }
 
-void Graph::printGraph() {
+//std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
+
+
+
+std::vector<Airport> Graph::findShortestPath(){
+
+
 }
+
+
 
