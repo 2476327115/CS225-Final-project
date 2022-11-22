@@ -58,7 +58,7 @@ std::unordered_map<int,std::string> Dijkstra::dijkstra(int srcID){
         distweight[itr->first]=2.0;
     }
     distweight[srcID]=0.0;
-    for(int count=0;count<Airports_.size()-1;count++){
+    for(int count=0;count<((int)Airports_.size())-1;count++){
         int minweightID = minWeight(srcID,sptSet);
         sptSet[minweightID]=true;
         std::unordered_map<int, Airport>::iterator itr1;
