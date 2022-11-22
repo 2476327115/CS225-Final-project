@@ -1,6 +1,11 @@
 lib/CMakeFiles/cs225.dir/cs225/HSLAPixel.cpp.o: \
+<<<<<<< HEAD
   /workspaces/CS225/CS225-Final-project/lib/cs225/HSLAPixel.cpp \
   /workspaces/CS225/CS225-Final-project/lib/cs225/HSLAPixel.h \
+=======
+  /workspaces/CS225-Final-project/lib/cs225/HSLAPixel.cpp \
+  /workspaces/CS225-Final-project/lib/cs225/HSLAPixel.h \
+>>>>>>> main
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/iostream \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11/bits/c++config.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

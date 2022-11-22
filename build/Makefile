@@ -57,10 +57,17 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /workspaces/CS225/CS225-Final-project
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /workspaces/CS225/CS225-Final-project/build
+=======
+CMAKE_SOURCE_DIR = /workspaces/CS225-Final-project
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = /workspaces/CS225-Final-project/build
+>>>>>>> main
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +94,15 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
+<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/CS225/CS225-Final-project/build/CMakeFiles /workspaces/CS225/CS225-Final-project/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/CS225/CS225-Final-project/build/CMakeFiles 0
+=======
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/CS225-Final-project/build/CMakeFiles /workspaces/CS225-Final-project/build//CMakeFiles/progress.marks
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/CS225-Final-project/build/CMakeFiles 0
+>>>>>>> main
 .PHONY : all
 
 # The main clean target
@@ -113,11 +126,31 @@ preinstall/fast:
 
 # clear depends
 depend:
+<<<<<<< HEAD
 	$(CMAKE_COMMAND) -P /workspaces/CS225/CS225-Final-project/build/CMakeFiles/VerifyGlobs.cmake
+=======
+	$(CMAKE_COMMAND) -P /workspaces/CS225-Final-project/build/CMakeFiles/VerifyGlobs.cmake
+>>>>>>> main
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 #=============================================================================
+<<<<<<< HEAD
+=======
+# Target rules for targets named test
+
+# Build rule for target.
+test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test
+.PHONY : test
+
+# fast build rule for target.
+test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
+.PHONY : test/fast
+
+#=============================================================================
+>>>>>>> main
 # Target rules for targets named main
 
 # Build rule for target.
@@ -193,6 +226,33 @@ entry/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/entry/main.cpp.s
 .PHONY : entry/main.cpp.s
 
+<<<<<<< HEAD
+=======
+tests/tests.o: tests/tests.cpp.o
+.PHONY : tests/tests.o
+
+# target to build an object file
+tests/tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/tests/tests.cpp.o
+.PHONY : tests/tests.cpp.o
+
+tests/tests.i: tests/tests.cpp.i
+.PHONY : tests/tests.i
+
+# target to preprocess a source file
+tests/tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/tests/tests.cpp.i
+.PHONY : tests/tests.cpp.i
+
+tests/tests.s: tests/tests.cpp.s
+.PHONY : tests/tests.s
+
+# target to generate assembly for a file
+tests/tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/tests/tests.cpp.s
+.PHONY : tests/tests.cpp.s
+
+>>>>>>> main
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -205,9 +265,19 @@ help:
 	@echo "... lodepng"
 	@echo "... main"
 	@echo "... src"
+<<<<<<< HEAD
 	@echo "... entry/main.o"
 	@echo "... entry/main.i"
 	@echo "... entry/main.s"
+=======
+	@echo "... test"
+	@echo "... entry/main.o"
+	@echo "... entry/main.i"
+	@echo "... entry/main.s"
+	@echo "... tests/tests.o"
+	@echo "... tests/tests.i"
+	@echo "... tests/tests.s"
+>>>>>>> main
 .PHONY : help
 
 
@@ -219,7 +289,11 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
+<<<<<<< HEAD
 	$(CMAKE_COMMAND) -P /workspaces/CS225/CS225-Final-project/build/CMakeFiles/VerifyGlobs.cmake
+=======
+	$(CMAKE_COMMAND) -P /workspaces/CS225-Final-project/build/CMakeFiles/VerifyGlobs.cmake
+>>>>>>> main
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

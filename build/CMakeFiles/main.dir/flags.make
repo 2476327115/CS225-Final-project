@@ -4,7 +4,11 @@
 # compile CXX with /usr/bin/clang++
 CXX_DEFINES = 
 
+<<<<<<< HEAD
 CXX_INCLUDES = -I/workspaces/CS225/CS225-Final-project/lib -I/workspaces/CS225/CS225-Final-project/src
+=======
+CXX_INCLUDES = -I/workspaces/CS225-Final-project/lib -I/workspaces/CS225-Final-project/src
+>>>>>>> main
 
 CXX_FLAGS =  -pedantic -Wall -Werror -Wfatal-errors -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -g -D_GLIBCXX_DEBUG -O0 -gdwarf-4 -std=gnu++17
 

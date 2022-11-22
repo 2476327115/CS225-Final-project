@@ -7,10 +7,15 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
+<<<<<<< HEAD
+=======
+  "/usr/lib/cmake/Catch2/Catch.cmake"
+>>>>>>> main
   "/usr/lib/cmake/Catch2/Catch2Config.cmake"
   "/usr/lib/cmake/Catch2/Catch2ConfigVersion.cmake"
   "/usr/lib/cmake/Catch2/Catch2Targets-noconfig.cmake"
   "/usr/lib/cmake/Catch2/Catch2Targets.cmake"
+<<<<<<< HEAD
   "/usr/share/cmake-3.22/Modules/CMakeCCompiler.cmake.in"
   "/usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c"
   "/usr/share/cmake-3.22/Modules/CMakeCInformation.cmake"
@@ -96,6 +101,23 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.22/Modules/Platform/Linux-Clang-C.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-Clang-CXX.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-Determine-CXX.cmake"
+=======
+  "/usr/share/cmake-3.22/Modules/CMakeCInformation.cmake"
+  "/usr/share/cmake-3.22/Modules/CMakeCXXInformation.cmake"
+  "/usr/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake"
+  "/usr/share/cmake-3.22/Modules/CMakeGenericSystem.cmake"
+  "/usr/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake"
+  "/usr/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake"
+  "/usr/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake"
+  "/usr/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/usr/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
+  "/usr/share/cmake-3.22/Modules/Compiler/Clang-C.cmake"
+  "/usr/share/cmake-3.22/Modules/Compiler/Clang-CXX.cmake"
+  "/usr/share/cmake-3.22/Modules/Compiler/Clang.cmake"
+  "/usr/share/cmake-3.22/Modules/Compiler/GNU.cmake"
+  "/usr/share/cmake-3.22/Modules/Platform/Linux-Clang-C.cmake"
+  "/usr/share/cmake-3.22/Modules/Platform/Linux-Clang-CXX.cmake"
+>>>>>>> main
   "/usr/share/cmake-3.22/Modules/Platform/Linux-GNU-C.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-GNU-CXX.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake"
@@ -119,11 +141,14 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
+<<<<<<< HEAD
   "CMakeFiles/3.22.1/CMakeSystem.cmake"
   "CMakeFiles/3.22.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
+=======
+>>>>>>> main
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "lib/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/CMakeFiles/CMakeDirectoryInformation.cmake"
@@ -131,6 +156,10 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+<<<<<<< HEAD
+=======
+  "CMakeFiles/test.dir/DependInfo.cmake"
+>>>>>>> main
   "CMakeFiles/main.dir/DependInfo.cmake"
   "lib/CMakeFiles/lodepng.dir/DependInfo.cmake"
   "lib/CMakeFiles/cs225.dir/DependInfo.cmake"
