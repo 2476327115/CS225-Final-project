@@ -173,6 +173,5 @@ void Graph::insertEdge(Route route, int srcID, int dstID){
 }
 
 void Graph::printGraph() {
-    adjacency_matrix
 }
 
