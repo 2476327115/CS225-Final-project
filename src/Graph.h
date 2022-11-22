@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+#include <string>
+#include <vector>
+#include <queue>
+#include <Airport.h>
+
+class Graph {
+    private:
+        std::vector<Airport> Airports;
+
+    public:
+        Graph();
+        void addEdge(int airportID1, int airportID2);
+        std::vector<Airport> findShortestPath();
+=======
 #pragma once
 #include <string>
 #include <vector>
@@ -12,6 +27,7 @@ class Graph {
     private:
     // 
         mutable std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
+        //                        sourseID                destID
         // std::vector<Airport> Airports;
         mutable std::unordered_map<int, Airport> Airports;
         
@@ -26,5 +42,8 @@ class Graph {
         void insertEdge(Route route, int srcID, int dstID);
         // void createGraph();
 
-        std::vector<Airport> findShortestPath();
+        
+        
+        
+>>>>>>> jinfan
 };
