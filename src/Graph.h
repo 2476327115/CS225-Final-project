@@ -16,7 +16,6 @@ class Graph {
         // std::vector<Airport> Airports;
         mutable std::unordered_map<int, Airport> Airports;
         
-        
 
     public:
         Graph();
@@ -25,5 +24,8 @@ class Graph {
         void parseEdges(const std::string& filename);
         void insertVertex(int ID, Airport airport);
         void insertEdge(Route route, int srcID, int dstID);
+        std::unordered_map<int, std::unordered_map<int, Edge>> getMatrix();
+        std::unordered_map<int, Airport> getAirports();
         // void createGraph();
+        
     };

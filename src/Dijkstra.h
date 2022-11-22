@@ -16,8 +16,8 @@ class Dijkstra {
     std::unordered_map<int,std::string> dijkstra(int srcID);
     int minWeight(int srcID,std::unordered_map<int,bool> sptSet);
     void insertWeightmatrix();
-    void insertAdjacencymatrix();
-    void insertAirports();
+    void insertAdjacencymatrix(Graph graph);
+    void insertAirports(Graph graph);
 
     private:
 
