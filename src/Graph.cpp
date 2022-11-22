@@ -150,10 +150,19 @@ void Graph::parseEdges(const std::string& filename){
         }
         Route_File.close();
     }
+<<<<<<< Updated upstream
 }
+=======
+    Route_File.close();
+    }
+    }
+}
+
+>>>>>>> Stashed changes
 
 void Graph::insertVertex(int ID, Airport airport){
     Airports[ID] = airport;
+    
 }
 
 void Graph::insertEdge(Route route, int srcID, int dstID){
