@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-#include <string>
-#include <vector>
-#include <queue>
-#include <Airport.h>
-
-class Graph {
-    private:
-        std::vector<Airport> Airports;
-
-    public:
-        Graph();
-        void addEdge(int airportID1, int airportID2);
-        std::vector<Airport> findShortestPath();
-=======
 #pragma once
 #include <string>
 #include <vector>
@@ -41,9 +26,4 @@ class Graph {
         void insertVertex(int ID, Airport airport);
         void insertEdge(Route route, int srcID, int dstID);
         // void createGraph();
-
-        
-        
-        
->>>>>>> jinfan
-};
+    };
