@@ -174,6 +174,12 @@ void Graph::insertEdge(Route route, int srcID, int dstID){
 
 }
 
+std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getMatrix(){
+   return adjacency_matrix;
+}
+std::unordered_map<int, Airport> Graph::getAirports(){
+   return Airports;
+}
 //std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
 
 

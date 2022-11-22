@@ -11,10 +11,10 @@
 class Graph {
     private:
     // 
-        mutable std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
+    mutable std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
         //                        sourseID                destID
         // std::vector<Airport> Airports;
-        mutable std::unordered_map<int, Airport> Airports;
+    mutable std::unordered_map<int, Airport> Airports; 
         
         
 
@@ -26,4 +26,7 @@ class Graph {
         void insertVertex(int ID, Airport airport);
         void insertEdge(Route route, int srcID, int dstID);
         // void createGraph();
+        std::unordered_map<int, std::unordered_map<int, Edge>> getMatrix();
+        std::unordered_map<int, Airport> getAirports();
+        
     };
