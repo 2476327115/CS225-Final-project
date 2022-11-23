@@ -8,23 +8,26 @@
 Dijkstra::Dijkstra (Graph graph, int srcID, int dstID){
     insertAdjacencymatrix(graph);
     insertAirports(graph);
-    
+    insertWeightmatrix();
+    g_=graph;
+    srcID_=srcID;
+    dstID_=dstID; 
 }
 
 void Dijkstra::insertAdjacencymatrix(Graph graph){
-    this->adjacency_matrix=graph.getMatrix(); 
+    this->adjac_matrix=graph.getMatrix(); 
 }
 void Dijkstra::insertAirports(Graph graph){
     this->Airports_=graph.getAirports();
 }
 void Dijkstra::insertWeightmatrix(){
-    //mutable std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
+    //mutable std::unordered_map<int, std::unordered_map<int, Edge>> adjac_matrix;
     //mutable std::unordered_map<int, std::unordered_map<int, double>> weight_matrix;
     //mutable std::unordered_map<int, Airport> Airports;
     std::unordered_map<int, Airport>::iterator itr1;
     for(itr1 = Airports_.begin();itr1!=Airports_.end();++itr1){
         int srcid=itr1->first;
-        std::unordered_map<int, Edge> tempdest=adjacency_matrix[srcid];
+        std::unordered_map<int, Edge> tempdest=adjac_matrix[srcid];
         std::unordered_map<int, Airport>::iterator itr2;
         std::unordered_map<int, double> insertedge;
         for(itr2 = Airports_.begin();itr2!=Airports_.end();++itr2){
@@ -56,14 +59,19 @@ std::unordered_map<int,std::string> Dijkstra::dijkstra(int srcID){
     std::unordered_map<int,double> distweight;
     std::unordered_map<int,bool> sptSet; 
     std::unordered_map<int, Airport>::iterator itr;
-    
+    std::queue<int> priorityQ;
     for(itr = Airports_.begin();itr!=Airports_.end();++itr){
-        sptSet[itr->first]=false;
-        dist[itr->first]=std::to_string(srcID)+' ';
-        distweight[itr->first]=2.0;
+        int tempid=itr->first;
+        sptSet[tempid]=false;
+        dist[tempid]=std::to_string(srcID)+' ';
+        distweight[tempid]=2.0;
+        if(tempid!=srcID){
+            priorityQ.push(tempid);
+        }
     }
     distweight[srcID]=0.0;
-    for(int count=0;count<((int)Airports_.size())-1;count++){
+    while (!priorityQ.empty())
+    {
         int minweightID = minWeight(srcID,sptSet);
         sptSet[minweightID]=true;
         std::unordered_map<int, Airport>::iterator itr1;
@@ -77,4 +85,18 @@ std::unordered_map<int,std::string> Dijkstra::dijkstra(int srcID){
         }
     }
     return dist;
+}
+
+
+std::string Dijkstra::getshortpath(Graph graph, int srcID, int dstID){
+    insertAdjacencymatrix(graph);
+    insertAirports(graph);
+    insertWeightmatrix();
+    g_=graph;
+    srcID_=srcID;
+    dstID_=dstID; 
+    std::unordered_map<int,std::string> result=dijkstra(srcID);
+    std::string path=result[dstID];
+    return path;
+    ///  
 }

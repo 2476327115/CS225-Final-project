@@ -251,6 +251,30 @@ Graph.cpp.s:
 	cd /workspaces/CS225-Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Graph.cpp.s
 .PHONY : Graph.cpp.s
 
+PageRank.o: PageRank.cpp.o
+.PHONY : PageRank.o
+
+# target to build an object file
+PageRank.cpp.o:
+	cd /workspaces/CS225-Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/PageRank.cpp.o
+.PHONY : PageRank.cpp.o
+
+PageRank.i: PageRank.cpp.i
+.PHONY : PageRank.i
+
+# target to preprocess a source file
+PageRank.cpp.i:
+	cd /workspaces/CS225-Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/PageRank.cpp.i
+.PHONY : PageRank.cpp.i
+
+PageRank.s: PageRank.cpp.s
+.PHONY : PageRank.s
+
+# target to generate assembly for a file
+PageRank.cpp.s:
+	cd /workspaces/CS225-Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/PageRank.cpp.s
+.PHONY : PageRank.cpp.s
+
 Route.o: Route.cpp.o
 .PHONY : Route.o
 
@@ -299,6 +323,9 @@ help:
 	@echo "... Graph.o"
 	@echo "... Graph.i"
 	@echo "... Graph.s"
+	@echo "... PageRank.o"
+	@echo "... PageRank.i"
+	@echo "... PageRank.s"
 	@echo "... Route.o"
 	@echo "... Route.i"
 	@echo "... Route.s"

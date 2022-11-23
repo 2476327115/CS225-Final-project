@@ -32,3 +32,7 @@ int Edge::getWeights(){
 void Edge::calculateWeights(){
     weights_ = Routes_.size();
 }
+
+std::unordered_map<int, Route> Edge::getRoutes() {
+    return Routes_;
+}

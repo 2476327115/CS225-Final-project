@@ -139,10 +139,24 @@ src/CMakeFiles/src.dir/Graph.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/src.dir/Graph.cpp.s"
 	cd /workspaces/CS225-Final-project/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/CS225-Final-project/src/Graph.cpp -o CMakeFiles/src.dir/Graph.cpp.s
 
+src/CMakeFiles/src.dir/PageRank.cpp.o: src/CMakeFiles/src.dir/flags.make
+src/CMakeFiles/src.dir/PageRank.cpp.o: ../src/PageRank.cpp
+src/CMakeFiles/src.dir/PageRank.cpp.o: src/CMakeFiles/src.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/CS225-Final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/src.dir/PageRank.cpp.o"
+	cd /workspaces/CS225-Final-project/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/src.dir/PageRank.cpp.o -MF CMakeFiles/src.dir/PageRank.cpp.o.d -o CMakeFiles/src.dir/PageRank.cpp.o -c /workspaces/CS225-Final-project/src/PageRank.cpp
+
+src/CMakeFiles/src.dir/PageRank.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/src.dir/PageRank.cpp.i"
+	cd /workspaces/CS225-Final-project/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/CS225-Final-project/src/PageRank.cpp > CMakeFiles/src.dir/PageRank.cpp.i
+
+src/CMakeFiles/src.dir/PageRank.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/src.dir/PageRank.cpp.s"
+	cd /workspaces/CS225-Final-project/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/CS225-Final-project/src/PageRank.cpp -o CMakeFiles/src.dir/PageRank.cpp.s
+
 src/CMakeFiles/src.dir/Route.cpp.o: src/CMakeFiles/src.dir/flags.make
 src/CMakeFiles/src.dir/Route.cpp.o: ../src/Route.cpp
 src/CMakeFiles/src.dir/Route.cpp.o: src/CMakeFiles/src.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/CS225-Final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/src.dir/Route.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/CS225-Final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/src.dir/Route.cpp.o"
 	cd /workspaces/CS225-Final-project/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/src.dir/Route.cpp.o -MF CMakeFiles/src.dir/Route.cpp.o.d -o CMakeFiles/src.dir/Route.cpp.o -c /workspaces/CS225-Final-project/src/Route.cpp
 
 src/CMakeFiles/src.dir/Route.cpp.i: cmake_force
@@ -160,6 +174,7 @@ src_OBJECTS = \
 "CMakeFiles/src.dir/Dijkstra.cpp.o" \
 "CMakeFiles/src.dir/Edge.cpp.o" \
 "CMakeFiles/src.dir/Graph.cpp.o" \
+"CMakeFiles/src.dir/PageRank.cpp.o" \
 "CMakeFiles/src.dir/Route.cpp.o"
 
 # External object files for target src
@@ -170,10 +185,11 @@ src/libsrc.a: src/CMakeFiles/src.dir/BFS.cpp.o
 src/libsrc.a: src/CMakeFiles/src.dir/Dijkstra.cpp.o
 src/libsrc.a: src/CMakeFiles/src.dir/Edge.cpp.o
 src/libsrc.a: src/CMakeFiles/src.dir/Graph.cpp.o
+src/libsrc.a: src/CMakeFiles/src.dir/PageRank.cpp.o
 src/libsrc.a: src/CMakeFiles/src.dir/Route.cpp.o
 src/libsrc.a: src/CMakeFiles/src.dir/build.make
 src/libsrc.a: src/CMakeFiles/src.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspaces/CS225-Final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library libsrc.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspaces/CS225-Final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libsrc.a"
 	cd /workspaces/CS225-Final-project/build/src && $(CMAKE_COMMAND) -P CMakeFiles/src.dir/cmake_clean_target.cmake
 	cd /workspaces/CS225-Final-project/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/src.dir/link.txt --verbose=$(VERBOSE)
 

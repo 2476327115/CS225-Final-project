@@ -24,8 +24,12 @@ class Graph {
         void parseEdges(const std::string& filename);
         void insertVertex(int ID, Airport airport);
         void insertEdge(Route route, int srcID, int dstID);
-        std::unordered_map<int, std::unordered_map<int, Edge>> getMatrix();
-        std::unordered_map<int, Airport> getAirports();
+        void printAirportInfo();
+        int getAirportNum();
+        const std::unordered_map<int, std::unordered_map<int, Edge>> getMatrix();
+        const std::unordered_map<int, Airport> getAirports();
         // void createGraph();
         
+        std::unordered_map<int, std::unordered_map<int, Edge>> getAdjacency_matrix();
+        bool operator==(const Graph & other);
     };
