@@ -19,7 +19,7 @@ class Dijkstra {
     void insertAdjacencymatrix(Graph graph);
     void insertAirports(Graph graph);
     std::string getshortpath(Graph graph, int srcID, int dstID); 
-    
+    std::vector<int> getAdjacencyvector(int airportID);
 
     private:
 

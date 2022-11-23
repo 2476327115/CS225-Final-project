@@ -7,7 +7,3 @@
 #include <vector>
 #include <algorithm>
 
-TEST_CASE("parseVertices", "[weight=10]")
-{
-    auto result = parseVertices("../data/airports.dat");
-}

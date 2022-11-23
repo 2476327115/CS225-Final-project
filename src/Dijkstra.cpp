@@ -2,9 +2,11 @@
 #include <iterator>
 #include <iostream>
 #include <string>
+#include <set>
 #include <unordered_map>
 #include "Dijkstra.h"
 #include <utility>
+typedef std::pair<int,double> PAP; //pair path
 Dijkstra::Dijkstra (Graph graph, int srcID, int dstID){
     insertAdjacencymatrix(graph);
     insertAirports(graph);
@@ -54,12 +56,19 @@ int Dijkstra::minWeight(int srcID,std::unordered_map<int,bool> sptSet){
     return minairid;
 }
 
+// std::vector<int> Dijkstra::getAdjacencyvector(int airportID){
+//     std::vector<int> result;
+//     for()
+//     return result;
+// }
+
+
 std::unordered_map<int,std::string> Dijkstra::dijkstra(int srcID){
     std::unordered_map<int,std::string> dist;
     std::unordered_map<int,double> distweight;
     std::unordered_map<int,bool> sptSet; 
     std::unordered_map<int, Airport>::iterator itr;
-    std::queue<int> priorityQ;
+    std::queue<PAP> priorityQ;
     for(itr = Airports_.begin();itr!=Airports_.end();++itr){
         int tempid=itr->first;
         sptSet[tempid]=false;
@@ -67,18 +76,29 @@ std::unordered_map<int,std::string> Dijkstra::dijkstra(int srcID){
         distweight[tempid]=2.0;
     }
     distweight[srcID]=0.0;
-    sptSet[srcID]=true;
+    priorityQ.push(PAP(srcID,0.0));
     while (!priorityQ.empty())
     {
-        int minweightID = minWeight(srcID,sptSet);
-        sptSet[minweightID]=true;
-        std::unordered_map<int, Airport>::iterator itr1;
-        for(itr1 = Airports_.begin();itr1!=Airports_.end();++itr1){
-            int airid=itr1->first;
-            double temp=1/(1/(distweight[minweightID])+1/(weight_matrix[minweightID][airid]));
-            if(!sptSet[airid]&&distweight[minweightID]!=2.0 && temp<distweight[airid]){
-            distweight[airid]=temp;
-            dist[airid]=dist[airid]+std::to_string(airid)+' ';
+        //int minweightID = minWeight(srcID,sptSet);
+        //sptSet[minweightID]=true;
+        while(!priorityQ.empty()&&sptSet[priorityQ.front().first]==true){
+            priorityQ.pop();
+        }
+        PAP temppair=priorityQ.front();
+        priorityQ.pop();
+        int tmepid=temppair.first;
+        double tempvalue=temppair.second;
+        sptSet[tmepid]=true;
+        std::unordered_map<int, double> adjmap=weight_matrix[tmepid];
+        std::unordered_map<int, double>::iterator itr1;
+        for(itr1=adjmap.begin();itr1!=adjmap.end();++itr1){
+            double tempminvalue=weight_matrix[tmepid][itr->first];
+            double minvalue=1/(1/tempminvalue+1/tempvalue);
+            int i=0;//check change or new push
+            if(tempminvalue>minvalue){
+                distweight[itr1->first]=minvalue;
+                dist[itr1->first]=dist[tmepid]+std::to_string(itr1->first)+' ';
+                priorityQ.push(PAP(itr1->first,minvalue));
             }
         }
     }
