@@ -56,12 +56,6 @@ int Dijkstra::minWeight(int srcID,std::unordered_map<int,bool> sptSet){
     return minairid;
 }
 
-// std::vector<int> Dijkstra::getAdjacencyvector(int airportID){
-//     std::vector<int> result;
-//     for()
-//     return result;
-// }
-
 
 std::unordered_map<int,std::string> Dijkstra::dijkstra(int srcID){
     std::unordered_map<int,std::string> dist;
@@ -79,15 +73,11 @@ std::unordered_map<int,std::string> Dijkstra::dijkstra(int srcID){
     priorityQ.push(PAP(srcID,0.0));
     while (!priorityQ.empty())
     {
-        //int minweightID = minWeight(srcID,sptSet);
-        //sptSet[minweightID]=true;
-        while(!priorityQ.empty()&&sptSet[priorityQ.front().first]==true){
-            priorityQ.pop();
-        }
+        while(!priorityQ.empty()&&sptSet[priorityQ.front().first]==true) priorityQ.pop();
         PAP temppair=priorityQ.front();
         priorityQ.pop();
         int tmepid=temppair.first;
-        double tempvalue=temppair.second;
+        double tempvalue=distweight[tmepid];
         sptSet[tmepid]=true;
         std::unordered_map<int, double> adjmap=weight_matrix[tmepid];
         std::unordered_map<int, double>::iterator itr1;
