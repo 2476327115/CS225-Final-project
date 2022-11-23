@@ -7,27 +7,20 @@
 #include "Airport.h"
 #include "Edge.h"
 #include <queue>
+#include <vector>
 
 class BFS{
 public:
-    BFS(const Graph & graph, const );
-
-
-
-
-
-  ImageTraversal::Iterator begin();
-  ImageTraversal::Iterator end();
-
-  void add(const Point & point);
-  Point pop();
-  Point peek() const;
-  bool empty() const;
-  void be_visited(Point p);
-  int get_visited(Point p);
+    BFS(const Graph & graph);
+    // BFS(const Graph & graph, int airportID);
+    std::vector<int> traverseAll(const Graph & graph, int srcID);
+    //std::vector<int> traverse_with_dest(const Graph & graph, int srcID, int destID);
 
 private:
-    Graph airport_graph;
-    std::queue<Point> BFS_queue;
-    std::vector<int> visited;
+    //int start_;
+    Graph airport_graph_;
+    std::queue<int> BFS_queue;
+    std::vector<bool> visited;
+    int number;
+    std::unordered_map<int, std::unordered_map<int, Edge>> matrix_;
 };

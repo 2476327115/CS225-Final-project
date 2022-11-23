@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/src.dir/Edge.cpp.o.d"
   "CMakeFiles/src.dir/Graph.cpp.o"
   "CMakeFiles/src.dir/Graph.cpp.o.d"
+  "CMakeFiles/src.dir/PageRank.cpp.o"
+  "CMakeFiles/src.dir/PageRank.cpp.o.d"
   "CMakeFiles/src.dir/Route.cpp.o"
   "CMakeFiles/src.dir/Route.cpp.o.d"
   "libsrc.a"

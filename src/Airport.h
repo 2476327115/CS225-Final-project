@@ -12,6 +12,10 @@ class Airport {
         Airport();
         Airport(int id, std::string name, std::string city, std::string latitude, std::string longitude);
         Airport(const Airport& other);
+        int getID();
+        std::string getName();
+        std::string getCity();
+        bool operator==(const Airport & other) const;
         Airport operator=(const Airport & other);
     
 };

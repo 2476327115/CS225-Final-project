@@ -1,41 +1,53 @@
 #include "BFS.h"
-
-BFS::BFS(const Graph & graph, const Airport & airport){
-    graph = graph;
-    
+#include "Graph.h"
+#include <vector>
+#include <unordered_map>
+#include <queue>
+#include <iostream>
+#include <sstream>
+#include <fstream>
+using namespace std;
+BFS::BFS(const Graph & graph){
+    airport_graph_ = graph;
+    number = airport_graph_.getAirportNum();   
 }
 
+std::vector<int> BFS::traverseAll(const Graph & graph, int srcID){
+    visited.resize(number,false);
+    vector<int> airports;
 
-void Graph::BFS(int s)
-{
-    // Mark all the vertices as not visited
-    vector<bool> visited;
-    visited.resize(V,false);
+    visited[srcID] = true;
+    BFS_queue.push(srcID);
+    airport_graph_ = graph;
+    matrix_ = airport_graph_.getAdjacency_matrix();
  
-    // Create a queue for BFS
-    list<int> queue;
- 
-    // Mark the current node as visited and enqueue it
-    visited[s] = true;
-    queue.push_back(s);
- 
-    while(!queue.empty())
+    while(BFS_queue.empty() != true)
     {
         // Dequeue a vertex from queue and print it
-        s = queue.front();
-        cout << s << " ";
-        queue.pop_front();
- 
+        srcID = BFS_queue.front();
+        if(matrix_.count(srcID) <= 0){
+            break; 
+        }
+        airports.push_back(srcID);
+        BFS_queue.pop();
+
         // Get all adjacent vertices of the dequeued
         // vertex s. If a adjacent has not been visited,
         // then mark it visited and enqueue it
-        for (auto adjecent: adj[s])
-        {
-            if (!visited[adjecent])
-            {
-                visited[adjecent] = true;
-                queue.push_back(adjecent);
+        for (auto it: matrix_[srcID]){
+            if (!visited[it.first]){
+                visited[it.first] = true;
+                BFS_queue.push(it.first);
+                airports.push_back(it.first);
+
             }
         }
     }
+    return airports;
 }
+
+// std::vector<int> BFS::traverse_with_dest(const Graph & graph, int srcID, int destID){
+    
+// }
+
+
