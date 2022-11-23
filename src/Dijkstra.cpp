@@ -10,6 +10,7 @@ typedef std::pair<int,double> PAP; //pair path
 Dijkstra::Dijkstra (Graph graph, int srcID, int dstID){
     insertAdjacencymatrix(graph);
     insertAirports(graph);
+    insertWeightmatrix();
     g_=graph;
     srcID_=srcID;
     dstID_=dstID; 
@@ -98,6 +99,7 @@ std::unordered_map<int,std::string> Dijkstra::dijkstra(int srcID){
 std::string Dijkstra::getshortpath(Graph graph, int srcID, int dstID){
     insertAdjacencymatrix(graph);
     insertAirports(graph);
+    insertWeightmatrix();
     g_=graph;
     srcID_=srcID;
     dstID_=dstID; 
