@@ -5,6 +5,7 @@
 #include <string>
 #include <unordered_map>
 #include "Airport.h"
+#include "Edge.h"
 
 Graph::Graph(std::string& Airport_File, std::string& Route_File){
     parseVertices(Airport_File);
@@ -13,11 +14,15 @@ Graph::Graph(std::string& Airport_File, std::string& Route_File){
 
 
 void Graph::parseVertices(const std::string& filename){
+    /* format
+    507, "London Heathrow Airport", "London", "United Kingdom", "LHR", "EGLL", 51.4706, -0.461941, 83, 0, 
+    "E", "Europe/London", "airport", "OurAirports"
+    */
     std::ifstream Ap_File(filename);
     std::string ID;
     std::string Name;
     std::string City;
-    std::string latitude;
+    std::string latitude;           
     std::string longtitude;
     if (Ap_File.is_open()) {
         std::string word;
@@ -35,49 +40,137 @@ void Graph::parseVertices(const std::string& filename){
                         count++;         
                     }
                     flag++;
+                    count++;
                 }
                 if(data[count] == '"'){
-                    flag++;
                     count++;
-                    if(flag == 2){
-                        while(data[count] != '"'){   
+                }
+                if(data[count] != ',')
+                {
+                    if(flag == 1){
+                        while(data[count] != ',' && data[count] != '"'){   
                             Name.push_back(data[count]);  
                             count++;         
                         }
+                        count++;
+                        if(data[count] == ','){
+                            flag++;
+                            continue;
+                        }
                     }
-                    if(flag == 3){
-                        while(data[count] != '"'){   
+                    if(flag == 2){
+                        while(data[count] != '"' && data[count] != ','){   
                             City.push_back(data[count]);  
                             count++;         
                         }
+                        count++;
+                        if(data[count] == ','){
+                            flag++;
+                            continue;
+                        }
                     }
-                    if(flag == 7){
-                        while(data[count] != '"'){   
+                    
+                    if(flag == 6){
+                        while(data[count] != ','){   
                             latitude.push_back(data[count]);  
                             count++;         
                         }
+                        if(data[count] == ','){
+                            flag++;
+                            continue;
+                        }
                     }
-                    if(flag == 8){
-                        while(data[count] != '"'){   
+                    if(flag == 7){
+                        while(data[count] != ','){   
                             longtitude.push_back(data[count]);  
                             count++;         
                         }
+                        if(data[count] == ','){
+                            flag++;
+                            break;
+                        }
                     }
                 }
+                if((flag == 3 || flag == 4 || flag ==5) && data[count] == ','){
+                        flag++;
+                        continue;
+                }
             }
+
             int Id = std::stoi(ID);
-            Airport airport(Id, Name, City, latitude, longtitude);
+            float Latitude = std::stof(latitude);
+            float Longtitude = std::stof(longtitude);
+            Airport airport(Id, Name, City, Latitude, Longtitude);
             // Airports.push_back(airport);
             insertVertex(Id, airport);
+            ID.clear();
+            Name.clear();
+            City.clear();
+            latitude.clear();           
+            longtitude.clear();
         }
     }
     Ap_File.close();
 }
 
-void Graph::parseEdges(const std::string& filename){
+
+
+void Graph::insertVertex(int ID, Airport airport){
+    Airports[ID] = airport;   
+}
+
+void Graph::insertEdge(Route route, int srcID, int dstID){
+    // if (adjacency_matrix.find(srcID) != adjacency_matrix.end() && adjacency_matrix[srcID].find(dstID) != adjacency_matrix[srcID].end()) {
+        
+    //     // if srcID and dstID found
+    //     // 我没太看明白
+    //     // 这里是不是应该加Edge里面的route和改weigh
+    //     // 这个条件判断是不是和else里面的一样啊
+    //     return;
+    // }
+    if (adjacency_matrix.find(srcID) == adjacency_matrix.end()) {
+        // if srcID not found
+        adjacency_matrix[srcID] = std::unordered_map<int, Edge>();
+    }
+    // adjacency_matrix[srcID][dstID] = Edge(route);
+    if(adjacency_matrix[srcID].find(dstID) == adjacency_matrix[srcID].end()){
+        // if srcID found, dstID not found
+        adjacency_matrix[srcID][dstID] = Edge(route);
+    } 
+    else {
+        adjacency_matrix[srcID][dstID].addRoute(route);
+    }
+
+}
+
+int Graph::getAirportNum() {
+    return (int) Airports.size();
+}
+
+const std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getMatrix() {
+   return adjacency_matrix;
+}
+
+const std::unordered_map<int, Airport> Graph::getAirports() {
+   return Airports;
+}
+
+//std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
+
+void Graph::printAirportInfo() {
+    for (auto air : Airports) {
+        std::cout << air.second.getID() << "\t" << air.second.getName() << std::endl;
+    }
+}
+
+
+std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getAdjacency_matrix() {
+    return adjacency_matrix;
+}
+
+void Graph::parseEdges(const std::string& filename) { 
     std::ifstream Route_File(filename);
     std::string word;
-
     std::string Airline;
     std::string AirlineID;
     std::string srcID;
@@ -85,104 +178,46 @@ void Graph::parseEdges(const std::string& filename){
     std::string stop;
 
     if (Route_File.is_open()) {
+
         /* Reads a line from `wordsFile` into `word` until the file ends. */
         // Route(int AirlineID, std::string Airline, int srcID, int dstID, int stop){
         // BA,1355,SIN,3316,LHR,507,,0,744 777
         while (getline(Route_File, word)) {
-            for(int count = 0; count < (int) word.size(); count++){
-                int flag = 0;
-                if(word.find("\\N") == std::string::npos) break;
-                if(count == 0){
-                    while(word[count] != ','){   
-                        Airline.push_back(word[count]);  
-                        count++;         
-                    }
-                    flag++;
-                    continue;
-                }
-                if(word[count] != ','){
-                    if(flag == 1){
-                        while(word[count] != ','){   
-                            AirlineID.push_back(word[count]);  
-                            count++;         
-                        }
-                        flag++;
-                        continue;
+            std::vector<std::string> v = split(word, ",");
 
-                    }
-                    if(flag == 3){
-                        while(word[count] != ','){   
-                            srcID.push_back(word[count]);  
-                            count++;         
-                        }
-                        flag++;
-                        continue;
-                    }
-                    if(flag == 5){
-                        while(word[count] != ','){   
-                            dstID.push_back(word[count]);  
-                            count++;         
-                        }
-                        flag++;
-                        continue;
-                    }
-                    if(flag == 6){
-                        while(word[count] != ','){   
-                            stop.push_back(word[count]);  
-                            count++;         
-                        }
-                        break;
-                    }
-                    while(word[count] != ','){
-                        count++;
-                    }
+            std::string Airline = v[0];
+            std::string AirlineID = v[1];
+            std::string srcID = v[3];
+            std::string dstID = v[5];
+            std::string stop = v[7];
 
-                }
-            
-            }
             int AirlineId = std::stoi(AirlineID);
             int srcId = std::stoi(srcID);
             int dstId = std::stoi(dstID);
             int stop_int = std::stoi(stop);
             Route route(AirlineId, Airline, srcId, dstId, stop_int);
             insertEdge(route, srcId, dstId);
-    
         }
-        Route_File.close();
     }
+    Route_File.close();
 }
 
-void Graph::insertVertex(int ID, Airport airport){
-    Airports[ID] = airport;
-    
-}
-
-void Graph::insertEdge(Route route, int srcID, int dstID){
-    if(adjacency_matrix.find(srcID) != adjacency_matrix.end() && adjacency_matrix[srcID].find(dstID) != adjacency_matrix[srcID].end()){
-        return;
+std::vector<std::string> Graph::split(std::string str,std::string pattern)
+{
+  std::string::size_type pos;
+  std::vector<std::string> result;
+  str += pattern;
+  int size = str.size();
+ 
+  for(int i = 0; i < size; i++){
+    pos = str.find(pattern,i);
+    if((int)pos < size){
+      std::string s = str.substr(i,pos - i);
+      result.push_back(s);
+      i = pos + pattern.size()-1;
     }
-    if(adjacency_matrix.find(srcID) == adjacency_matrix.end()){
-        adjacency_matrix[srcID] = std::unordered_map<int, Edge>();
-    }
-    if(adjacency_matrix[srcID].find(dstID) == adjacency_matrix[srcID].end()){
-        adjacency_matrix[srcID][dstID] = Edge(route);
-    }
-    else{
-        Edge edge = adjacency_matrix[srcID][dstID];
-        edge.addRoute(route);
-    }
-
+  }
+  return result;
 }
-
-std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getMatrix(){
-   return adjacency_matrix;
-}
-std::unordered_map<int, Airport> Graph::getAirports(){
-   return Airports;
-}
-//std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
-
-
-
 
 
