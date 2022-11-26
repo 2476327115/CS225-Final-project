@@ -157,9 +157,9 @@ void Graph::parseEdges(const std::string& filename) {
         /* Reads a line from `wordsFile` into `word` until the file ends. */
         // Route(int AirlineID, std::string Airline, int srcID, int dstID, int stop){
         // BA,1355,SIN,3316,LHR,507,,0,744 777
-        int i = 0;
+        // int i = 0;
         while (getline(Route_File, word)) {
-            std::cout << "times: " << i++ << std::endl;
+            // std::cout << "times: " << i++ << std::endl;
             if(word.find("\\N") != std::string::npos) continue;
             std::vector<std::string> v = split(word, ",");
 
@@ -169,11 +169,11 @@ void Graph::parseEdges(const std::string& filename) {
             std::string dstID = v[5];
             std::string stop = v[7];
 
-            std::cout << Airline << std::endl;
-            std::cout << AirlineID << std::endl;
-            std::cout << srcID << std::endl;
-            std::cout << dstID << std::endl;
-            std::cout << stop << std::endl;
+            // std::cout << Airline << std::endl;
+            // std::cout << AirlineID << std::endl;
+            // std::cout << srcID << std::endl;
+            // std::cout << dstID << std::endl;
+            // std::cout << stop << std::endl;
 
             int AirlineId = std::stoi(AirlineID);
             int srcId = std::stoi(srcID);
