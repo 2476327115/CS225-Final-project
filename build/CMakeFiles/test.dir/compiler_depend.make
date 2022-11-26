@@ -246,21 +246,16 @@ CMakeFiles/test.dir/tests/test.cpp.o: ../tests/test.cpp \
   /usr/include/catch2/internal/catch_test_registry.hpp \
   /usr/include/catch2/interfaces/catch_interfaces_testcase.hpp \
   /usr/include/catch2/internal/catch_preprocessor_remove_parens.hpp \
-  ../src/Graph.h \
-  /usr/include/c++/11/queue \
-  /usr/include/c++/11/deque \
-  /usr/include/c++/11/bits/stl_deque.h \
-  /usr/include/c++/11/bits/deque.tcc \
-  /usr/include/c++/11/debug/deque \
-  /usr/include/c++/11/bits/stl_heap.h \
-  /usr/include/c++/11/bits/stl_queue.h \
-  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/iostream \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/bits/istream.tcc \
   /usr/include/c++/11/unordered_map \
   /usr/include/c++/11/ext/aligned_buffer.h \
   /usr/include/c++/11/bits/hashtable.h \
   /usr/include/c++/11/bits/hashtable_policy.h \
   /usr/include/c++/11/tuple \
   /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
   /usr/include/c++/11/bits/invoke.h \
   /usr/include/c++/11/bits/enable_special_members.h \
   /usr/include/c++/11/bits/node_handle.h \
@@ -272,33 +267,49 @@ CMakeFiles/test.dir/tests/test.cpp.o: ../tests/test.cpp \
   /usr/include/c++/11/debug/safe_unordered_container.tcc \
   /usr/include/c++/11/debug/safe_local_iterator.h \
   /usr/include/c++/11/debug/safe_local_iterator.tcc \
+  ../src/Graph.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/deque \
+  /usr/include/c++/11/bits/stl_deque.h \
+  /usr/include/c++/11/bits/deque.tcc \
+  /usr/include/c++/11/debug/deque \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/stl_queue.h \
   ../src/Airport.h \
   ../src/Edge.h \
   ../src/Route.h \
-  /usr/include/c++/11/iostream \
-  /usr/include/c++/11/istream \
-  /usr/include/c++/11/bits/istream.tcc
+  ../src/Dijkstra.h \
+  ../src/PageRank.h \
+  /usr/include/c++/11/iterator \
+  /usr/include/c++/11/bits/stream_iterator.h \
+  ../src/BFS.h
 
 
-/usr/include/c++/11/istream:
+../src/BFS.h:
+
+/usr/include/c++/11/bits/stream_iterator.h:
+
+../src/Dijkstra.h:
 
 ../src/Airport.h:
+
+/usr/include/c++/11/bits/stl_queue.h:
+
+/usr/include/c++/11/debug/deque:
+
+/usr/include/c++/11/bits/deque.tcc:
+
+/usr/include/c++/11/bits/stl_deque.h:
+
+/usr/include/c++/11/deque:
+
+/usr/include/c++/11/queue:
 
 /usr/include/c++/11/debug/safe_unordered_container.tcc:
 
 /usr/include/c++/11/debug/safe_unordered_base.h:
 
 /usr/include/c++/11/bits/unordered_map.h:
-
-/usr/include/c++/11/iostream:
-
-/usr/include/c++/11/bits/node_handle.h:
-
-/usr/include/c++/11/bits/invoke.h:
-
-/usr/include/c++/11/array:
-
-/usr/include/c++/11/bits/hashtable_policy.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
@@ -333,10 +344,6 @@ CMakeFiles/test.dir/tests/test.cpp.o: ../tests/test.cpp \
 /usr/include/c++/11/debug/helper_functions.h:
 
 /usr/include/c++/11/debug/functions.h:
-
-/usr/include/c++/11/bits/enable_special_members.h:
-
-/usr/include/c++/11/bits/basic_ios.tcc:
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_timespec.h:
 
@@ -404,9 +411,7 @@ CMakeFiles/test.dir/tests/test.cpp.o: ../tests/test.cpp \
 
 /usr/include/aarch64-linux-gnu/bits/struct_rwlock.h:
 
-/usr/include/c++/11/bits/istream.tcc:
-
-/usr/include/aarch64-linux-gnu/bits/sched.h:
+/usr/include/c++/11/iterator:
 
 /usr/include/c++/11/bits/range_access.h:
 
@@ -424,7 +429,9 @@ CMakeFiles/test.dir/tests/test.cpp.o: ../tests/test.cpp \
 
 /usr/include/aarch64-linux-gnu/bits/floatn.h:
 
-/usr/include/c++/11/bits/deque.tcc:
+/usr/include/c++/11/bits/node_handle.h:
+
+/usr/include/c++/11/iostream:
 
 /usr/include/c++/11/debug/macros.h:
 
@@ -482,10 +489,6 @@ CMakeFiles/test.dir/tests/test.cpp.o: ../tests/test.cpp \
 
 /usr/include/aarch64-linux-gnu/bits/timesize.h:
 
-/usr/include/c++/11/tuple:
-
-/usr/include/aarch64-linux-gnu/bits/select.h:
-
 /usr/include/catch2/internal/catch_assertion_handler.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_itimerspec.h:
@@ -493,6 +496,10 @@ CMakeFiles/test.dir/tests/test.cpp.o: ../tests/test.cpp \
 ../tests/test.cpp:
 
 /usr/include/aarch64-linux-gnu/sys/types.h:
+
+../src/Graph.h:
+
+/usr/include/c++/11/bits/postypes.h:
 
 /usr/include/aarch64-linux-gnu/gnu/stubs.h:
 
@@ -570,9 +577,9 @@ CMakeFiles/test.dir/tests/test.cpp.o: ../tests/test.cpp \
 
 /usr/include/c++/11/bits/stl_iterator_base_funcs.h:
 
-/usr/include/c++/11/bits/stl_queue.h:
-
 /usr/lib/llvm-14/lib/clang/14.0.0/include/stdarg.h:
+
+/usr/include/c++/11/array:
 
 /usr/include/c++/11/debug/safe_unordered_container.h:
 
@@ -603,6 +610,10 @@ CMakeFiles/test.dir/tests/test.cpp.o: ../tests/test.cpp \
 /usr/include/catch2/interfaces/catch_interfaces_enum_values_registry.hpp:
 
 /usr/include/c++/11/type_traits:
+
+/usr/include/aarch64-linux-gnu/bits/select.h:
+
+/usr/include/c++/11/tuple:
 
 /usr/include/aarch64-linux-gnu/bits/pthreadtypes.h:
 
@@ -669,6 +680,14 @@ CMakeFiles/test.dir/tests/test.cpp.o: ../tests/test.cpp \
 /usr/include/aarch64-linux-gnu/bits/stdint-intn.h:
 
 /usr/include/catch2/internal/catch_noncopyable.hpp:
+
+/usr/include/c++/11/bits/stl_heap.h:
+
+/usr/include/aarch64-linux-gnu/bits/long-double.h:
+
+/usr/include/c++/11/bits/std_abs.h:
+
+../src/PageRank.h:
 
 /usr/include/stdio.h:
 
@@ -756,8 +775,6 @@ CMakeFiles/test.dir/tests/test.cpp.o: ../tests/test.cpp \
 
 /usr/include/c++/11/ios:
 
-/usr/include/c++/11/deque:
-
 /usr/include/c++/11/bits/ios_base.h:
 
 /usr/include/c++/11/bits/locale_classes.h:
@@ -771,8 +788,6 @@ CMakeFiles/test.dir/tests/test.cpp.o: ../tests/test.cpp \
 /usr/include/c++/11/bits/exception.h:
 
 /usr/include/c++/11/bits/locale_facets.h:
-
-/usr/include/c++/11/debug/deque:
 
 /usr/include/aarch64-linux-gnu/c++/11/bits/atomic_word.h:
 
@@ -818,18 +833,18 @@ CMakeFiles/test.dir/tests/test.cpp.o: ../tests/test.cpp \
 
 /usr/include/catch2/internal/catch_preprocessor_remove_parens.hpp:
 
-/usr/include/c++/11/bits/postypes.h:
+/usr/include/c++/11/istream:
 
-../src/Graph.h:
+/usr/include/aarch64-linux-gnu/bits/sched.h:
 
-/usr/include/c++/11/queue:
+/usr/include/c++/11/bits/istream.tcc:
 
-/usr/include/c++/11/bits/stl_deque.h:
-
-/usr/include/aarch64-linux-gnu/bits/long-double.h:
-
-/usr/include/c++/11/bits/std_abs.h:
-
-/usr/include/c++/11/bits/stl_heap.h:
+/usr/include/c++/11/bits/hashtable_policy.h:
 
 /usr/include/c++/11/bits/uses_allocator.h:
+
+/usr/include/c++/11/bits/invoke.h:
+
+/usr/include/c++/11/bits/basic_ios.tcc:
+
+/usr/include/c++/11/bits/enable_special_members.h:
