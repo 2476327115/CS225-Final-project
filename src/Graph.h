@@ -11,14 +11,15 @@
 class Graph {
     private:
     // 
-        mutable std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
+        std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
         //                        sourseID                destID
         // std::vector<Airport> Airports;
-        mutable std::unordered_map<int, Airport> Airports;
+        std::unordered_map<int, Airport> Airports;
+        std::vector<std::string> split(std::string str, std::string pattern);
         
 
     public:
-        Graph();
+        Graph() {};
         Graph(std::string& Airport_File, std::string& Route_File);
         void parseVertices(const std::string& filename);
         void parseEdges(const std::string& filename);

@@ -15,6 +15,7 @@ class Edge {
     int getWeights();
     void calculateWeights();
     std::unordered_map<int, Route> getRoutes();
+    bool operator==(const Edge & other);
 
     private:
     std::unordered_map<int, Route> Routes_;

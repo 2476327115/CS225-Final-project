@@ -1,6 +1,5 @@
 #include "PageRank.h"
 #include "Graph.h"
-#include <iterator>
 #include <iostream>
 #include <string>
 #include <unordered_map>
@@ -8,35 +7,43 @@
 #include "Edge.h"
 #include <queue>
 #include <vector>
-#include <map>
+#include <algorithm>
 
 int PageRank::getOutDegree(int srcID){
     return (int) adj_matrix_[srcID].size();
 }
 
 
-std::map<int, double> PageRank::pageRank(const Graph & graph, int time, double damping_factor){
+std::unordered_map<int, double> PageRank::pageRank(const Graph & graph, int time, double damping_factor){
     graph_ = graph;
     adj_matrix_ = graph_.getMatrix();
     airports = graph_.getAirports();
     number_ap = graph_.getAirportNum();
     for(auto it : airports){
         rank_[it.first] = 1.0 / (double) number_ap;
+        rank_[it.first] = 1.0;
     }
-    double damping_value = (1.0 - damping_factor) / (double) number_ap;
-    for(auto x : airports){
-        for(int i = 0; i < number_ap; i++){
-            bool rank = 0.0;
+    // double damping_value = (1.0 - damping_factor) / (double) number_ap;
+    double damping_value = (1.0 - damping_factor);
+    for(int i = 0; i < time; i++){
+        for(auto x : airports){
+            double rank = 0.0;
             for(auto y : adj_matrix_){
                 // y.first srcID ; y.second destID Edge
                 // x.first destID(we want) 
                 if(y.second.find(x.first) != y.second.end()){
+
                     int deg = getOutDegree(y.first);
-                    rank += damping_factor * rank_[y.first] / deg;
+                    //          destID             srcID
+                    // std::cout << x.first << " " << y.first << " " << deg << " " << std::endl;
+                    rank += damping_factor * rank_[y.first] / (double) deg;
+                    // std::cout << x.first << " " <<rank <<" ghjgh"<< std::endl;
                 }
-                rank += damping_value;
-                rank_[x.first] = rank;
+                
             }
+            rank += damping_value;
+            rank_[x.first] = rank;
+            
         }
     }
     return rank_;
@@ -54,20 +61,18 @@ Airport PageRank::findImportantAP(){
     return airports[ap];
 }
 
-
-// void PageRank::get_matrix(const Graph & graph){
-//     graph_ = graph;
-//     adj_matrix_ = graph_.getMatrix();
-//     number_ap = graph_.getAirportNum();
+std::vector<int> PageRank::getRank_AP(){
+    std::vector<std::pair<int, double>> rank;
+    std::vector<int> rankAP;
+    for(auto &it : rank_){
+        rank.push_back(it);
+    }
+    std::sort(rank.begin(), rank.end(), cmp);
+    for(auto &it : rank){
+        // std::cout << it.first << " " << it.second << std::endl;
+        rankAP.push_back(it.first);
+    }
     
+    return rankAP;
+}
 
-
-//     for(auto &it : adj_matrix_){
-//         int deg = getOutDegree(it.first);
-//         for(int i = 0; i < number_ap; i++){
-
-//         }
-//     }
-
-
-// }
