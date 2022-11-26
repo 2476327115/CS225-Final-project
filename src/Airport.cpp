@@ -5,15 +5,16 @@ Airport::Airport(){
     id_ = 0;
     name_ = "";
     city_ = "";
-    latitude_ = "";
-    longitude_ = "";
+    latitude_ = 0.0;
+    longitude_ = 0.0;
 
 }
 
-Airport::Airport(int id, std::string name, std::string city, std::string latitude, std::string longitude) {
+Airport::Airport(int id, std::string name, std::string city, std::string country, double latitude, double longitude) {
     id_ = id;
     name_ = name;
     city_ = city;
+    country_ = country;
     latitude_ = latitude;
     longitude_ = longitude;
 }
@@ -26,6 +27,16 @@ Airport::Airport(const Airport& other){
     longitude_ = other.longitude_;
 }
 
+bool Airport::operator==(const Airport & other) const{
+    if(id_ != other.id_)return false;
+    if(name_ != other.name_) return false;
+    if(city_ != other.city_) return false;
+    if(latitude_ != other.latitude_) return false;
+    if(longitude_ != other.longitude_) return false;
+    return true;
+
+}
+
 Airport Airport::operator=(const Airport & other) {
     id_ = other.id_;
     name_ = other.name_;
@@ -33,4 +44,12 @@ Airport Airport::operator=(const Airport & other) {
     latitude_ = other.latitude_;
     longitude_ = other.longitude_;
     return *this;
+}
+
+int Airport::getID() {
+    return id_;
+}
+
+std::string Airport::getName() {
+    return name_;
 }

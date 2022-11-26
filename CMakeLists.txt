@@ -6,6 +6,8 @@ set(assignment_entrypoints "main") # Entrypoints to run the program
 set(assignment_clean_rm "") # Generated files that should be removed with "make clean"
 set(assignment_container "fa22") # Container we are targetting
 
+# Add color support to our messages.
+# See: https://stackoverflow.com/questions/18968979/how-to-get-colorized-output-with-cmake
 if(NOT WIN32)
   string(ASCII 27 Esc)
   set(ColorReset   "${Esc}[m")
@@ -88,7 +90,7 @@ set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Werror -Wfatal-errors -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function")
 
 # Specify debug symbols and no optimizations for Debug builds.
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_GLIBCXX_DEBUG -O0 -gdwarf-4")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_GLIBCXX_DEBUG -O0 -g")
 
 # Specify additional clean files.
 set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_CLEAN_FILES "${assignment_clean_rm}")

@@ -1,10 +1,150 @@
 #include <catch2/catch_test_macros.hpp>
 
+#include <iostream>
+#include <vector>
+#include <unordered_map>
 #include "Graph.h"
+#include "Edge.h"
+#include <Dijkstra.h>
+#include <PageRank.h>
+#include <BFS.h>
 
-TEST_CASE("TEST GRAPH") {
-    std::string airportFilename = "Airport_test.dat";
-    std::string routeFilename = "Route_test.dat";
+
+TEST_CASE("TEST insertVertex #0", "[Graph]") {
+    Graph graph = Graph();
+    Airport airport0 = Airport(0, "airport0", "city0", "country0", 0, 0);
+    graph.insertVertex(0, airport0);
+    std::unordered_map<int, Airport> target_m;
+    target_m.insert({0, airport0});
+    REQUIRE(graph.getAirports() == target_m);
+}
+
+TEST_CASE("TEST insertVertex #1", "[Graph]") {
+
+    Graph graph = Graph();
+    Airport airport0 = Airport(0, "airport0", "city0", "country0", 0, 0);
+    Airport airport1 = Airport(1, "airport1", "city1", "country0", 0, 0);
+    graph.insertVertex(0, airport0);
+    graph.insertVertex(1, airport1);
+
+    std::unordered_map<int, Airport> target_m;
+    target_m.insert({0, airport0});
+    target_m.insert({1, airport1});
+    REQUIRE(graph.getAirports() == target_m);
+}
+
+
+TEST_CASE("TEST insertEdge", "[Graph]") {
+    Graph graph = Graph();
+    Route route0 = Route(0, "airline0", 0, 1, 0);
+    Route route1 = Route(1, "airline1", 1, 0, 0);
+    graph.insertEdge(route0, 0, 1);
+    graph.insertEdge(route1, 1, 0);
+    Edge edge0 = graph.getAdjacency_matrix()[0][1];
+    Edge edge1 = graph.getAdjacency_matrix()[1][0];
+    std::unordered_map<int, Route> target0;
+    std::unordered_map<int, Route> target1;
+    target0.insert({0, route0});
+    target1.insert({1, route1});
+
+    REQUIRE(edge0.getRoutes() == target0);
+    REQUIRE(edge1.getRoutes() == target1);
+}
+
+
+TEST_CASE("TEST parseFile small", "[Graph]") {
+    std::string airport_file = "../tests/Airport_test_small.dat";
+    std::string route_file = "../tests/Route_test_small.dat";
+    Graph graph = Graph(airport_file, route_file);
+
+    std::cout << graph.getAdjacency_matrix().size() << std::endl;
+    std::cout << "srcID\tdstID\tAirline" << std::endl;
+    for (auto iter0 : graph.getAdjacency_matrix()) {
+        for (auto iter1 : iter0.second) {
+            for (auto iter2 : iter1.second.getRoutes()) {
+                std::cout << iter0.first << "\t" << iter1.first << "\t" << iter2.first << "\t" << std::endl;
+            }
+        }
+    }
+
+    REQUIRE (graph.getAdjacency_matrix()[0][1].getWeights() == 1);
+    REQUIRE (graph.getAdjacency_matrix()[0][2].getWeights() == 1);
+    REQUIRE (graph.getAdjacency_matrix()[0][3].getWeights() == 0);
+    REQUIRE (graph.getAdjacency_matrix()[0][4].getWeights() == 0);
+    REQUIRE (graph.getAdjacency_matrix()[1][0].getWeights() == 1);
+    REQUIRE (graph.getAdjacency_matrix()[1][2].getWeights() == 1);
+    REQUIRE (graph.getAdjacency_matrix()[1][3].getWeights() == 1);
+    REQUIRE (graph.getAdjacency_matrix()[1][4].getWeights() == 0);
+    REQUIRE (graph.getAdjacency_matrix()[2][1].getWeights() == 2);
+    REQUIRE (graph.getAdjacency_matrix()[2][3].getWeights() == 1);
+    REQUIRE (graph.getAdjacency_matrix()[2][4].getWeights() == 0);
+    REQUIRE (graph.getAdjacency_matrix()[3][0].getWeights() == 0);
+    REQUIRE (graph.getAdjacency_matrix()[3][1].getWeights() == 1);
+    REQUIRE (graph.getAdjacency_matrix()[3][2].getWeights() == 1);
+    REQUIRE (graph.getAdjacency_matrix()[4][0].getWeights() == 0);
+    REQUIRE (graph.getAdjacency_matrix()[4][1].getWeights() == 0);
+    REQUIRE (graph.getAdjacency_matrix()[4][2].getWeights() == 0);
+    REQUIRE (graph.getAdjacency_matrix()[4][3].getWeights() == 0);
+}
+
+
+TEST_CASE("TEST find important airport", "[PageRank]") {
+    std::string airport_file = "../tests/Airport_test_small.dat";
+    std::string route_file = "../tests/Route_test_small.dat";
+    Graph graph = Graph(airport_file, route_file);
+    PageRank pg = PageRank();
+    std::unordered_map<int, double> m = pg.pageRank(graph, 10, 0.85);
+    std::unordered_map<int, double> target_m;
+    std::vector<int> r = pg.getRank_AP();
+    std::vector<int> target_r = {1, 2, 3, 0, 4};
+    target_m.insert({0, 0.515});
+    target_m.insert({1, 1.292});
+    target_m.insert({2, 1.164});
+    target_m.insert({3, 1.011});
+    target_m.insert({4, 0.150});
+    for(auto &it : m){
+        std::cout << it.first << " " << it.second << std::endl;
+    }
+    REQUIRE(r == target_r);
+    REQUIRE(m == target_m);
+}
+
+TEST_CASE("BFS") {
+    std::string airport_file = "../tests/Airport_test_small.dat";
+    std::string route_file = "../tests/Route_test_small.dat";
+    Graph graph = Graph(airport_file, route_file);
+    BFS bfs = BFS(graph);
+    std::vector<int> all0 = bfs.traverseAll(graph, 0);
+    std::vector<int> all1 = bfs.traverseAll(graph, 1);
+    std::vector<int> all2 = bfs.traverseAll(graph, 4);
+    std::vector<int> dest0 = bfs.traverse_with_dest(graph, 0, 3);
+    std::vector<int> dest1 = bfs.traverse_with_dest(graph, 0, 1);
+    // for(unsigned i = 0; i < dest1.size(); i++){
+    //     std::cout << dest1[i] << std::endl;
+    // }
+}
+
+TEST_CASE("TEST shortest path", "[Dijkstra]") {
+    std::string airport_file = "../tests/Airport_test_small.dat";
+    std::string route_file = "../tests/Route_test_small.dat";
+    Graph graph = Graph(airport_file, route_file);
+    Dijkstra dijkstra = Dijkstra(graph);
+    std::cout << " Dijkstra ok " << std::endl ;
+    std::string str0 = dijkstra.getshortpath(graph, 0, 3);
+    std::string str1 = dijkstra.getshortpath(graph, 0, 1);
+    REQUIRE(str0 == "Airport0 Airport1 Airport3");
+    REQUIRE(str1 == "Airport0 Airport1");
+}
+
+TEST_CASE("Graph Test # real data", "[Graph]") {
+    std::string airport_file = "../data/airports.dat";
+    std::string route_file = "../data/routes.dat";
+    Graph graph = Graph(airport_file, route_file);    
+}
+
+TEST_CASE("TEST parseFile small real", "[Graph]") {
+    std::string airport_file = "../tests/Airport_test_real.dat";
+    std::string route_file = "../tests/Route_test_small.dat";
+    Graph graph = Graph(airport_file, route_file);
     
-    Graph graph = Graph(airportFilename, routeFilename);
 }

@@ -41,6 +41,7 @@ set(OLD_GLOB
   "/workspaces/CS225-Final-project/src/Dijkstra.cpp"
   "/workspaces/CS225-Final-project/src/Edge.cpp"
   "/workspaces/CS225-Final-project/src/Graph.cpp"
+  "/workspaces/CS225-Final-project/src/PageRank.cpp"
   "/workspaces/CS225-Final-project/src/Route.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
@@ -48,10 +49,10 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/workspaces/CS225-Final-project/build/CMakeFiles/cmake.verify_globs")
 endif()
 
-# tests_src at CMakeLists.txt:128 (file)
+# tests_src at CMakeLists.txt:130 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/workspaces/CS225-Final-project/tests/*.cpp")
 set(OLD_GLOB
-  "/workspaces/CS225-Final-project/tests/tests.cpp"
+  "/workspaces/CS225-Final-project/tests/test.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
