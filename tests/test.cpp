@@ -52,7 +52,7 @@ TEST_CASE("TEST insertEdge", "[Graph]") {
 }
 
 
-TEST_CASE("TEST parseFile small", "[Graph]") {
+TEST_CASE("TEST parseFile # small dataset", "[Graph]") {
     std::string airport_file = "../tests/Airport_test_small.dat";
     std::string route_file = "../tests/Route_test_small.dat";
     Graph graph = Graph(airport_file, route_file);
@@ -88,28 +88,28 @@ TEST_CASE("TEST parseFile small", "[Graph]") {
 }
 
 
-TEST_CASE("TEST find important airport", "[PageRank]") {
+TEST_CASE("TEST find important airport # small dataset", "[PageRank]") {
     std::string airport_file = "../tests/Airport_test_small.dat";
     std::string route_file = "../tests/Route_test_small.dat";
     Graph graph = Graph(airport_file, route_file);
     PageRank pg = PageRank();
     std::unordered_map<int, double> m = pg.pageRank(graph, 10, 0.85);
-    std::unordered_map<int, double> target_m;
+    // std::unordered_map<int, double> target_m;
     std::vector<int> r = pg.getRank_AP();
     std::vector<int> target_r = {1, 2, 3, 0, 4};
-    target_m.insert({0, 0.515});
-    target_m.insert({1, 1.292});
-    target_m.insert({2, 1.164});
-    target_m.insert({3, 1.011});
-    target_m.insert({4, 0.150});
-    for(auto &it : m){
-        std::cout << it.first << " " << it.second << std::endl;
-    }
+    // target_m.insert({0, 0.515});
+    // target_m.insert({1, 1.292});
+    // target_m.insert({2, 1.164});
+    // target_m.insert({3, 1.011});
+    // target_m.insert({4, 0.150});
+    // for(auto &it : m){
+    //     std::cout << it.first << " " << it.second << std::endl;
+    // }
     REQUIRE(r == target_r);
-    REQUIRE(m == target_m);
+    // REQUIRE(m == target_m);
 }
 
-TEST_CASE("BFS") {
+TEST_CASE("BFS # samll dataset", "[BFS]") {
     std::string airport_file = "../tests/Airport_test_small.dat";
     std::string route_file = "../tests/Route_test_small.dat";
     Graph graph = Graph(airport_file, route_file);
@@ -117,6 +117,8 @@ TEST_CASE("BFS") {
     std::vector<int> all0 = bfs.traverseAll(graph, 0);
     std::vector<int> all1 = bfs.traverseAll(graph, 1);
     std::vector<int> all2 = bfs.traverseAll(graph, 4);
+    std:: cout << all0.size() << std::endl;
+    REQUIRE (all0.size() == all1.size());
     std::vector<int> dest0 = bfs.traverse_with_dest(graph, 0, 3);
     std::vector<int> dest1 = bfs.traverse_with_dest(graph, 0, 1);
     // for(unsigned i = 0; i < dest1.size(); i++){
@@ -124,27 +126,55 @@ TEST_CASE("BFS") {
     // }
 }
 
-TEST_CASE("TEST shortest path", "[Dijkstra]") {
+TEST_CASE("TEST shortest path # small dataset", "[Dijkstra]") {
     std::string airport_file = "../tests/Airport_test_small.dat";
     std::string route_file = "../tests/Route_test_small.dat";
     Graph graph = Graph(airport_file, route_file);
     Dijkstra dijkstra = Dijkstra(graph);
-    std::cout << " Dijkstra ok " << std::endl ;
+    // std::cout << " Dijkstra ok " << std::endl ;
     std::string str0 = dijkstra.getshortpath(graph, 0, 3);
     std::string str1 = dijkstra.getshortpath(graph, 0, 1);
-    REQUIRE(str0 == "Airport0 Airport1 Airport3");
-    REQUIRE(str1 == "Airport0 Airport1");
+    REQUIRE(str0 == "0 1 3 ");
+    REQUIRE(str1 == "0 1 ");
 }
 
-TEST_CASE("Graph Test # real data", "[Graph]") {
+TEST_CASE("TEST construct graph # real data", "[Graph]") {
     std::string airport_file = "../data/airports.dat";
     std::string route_file = "../data/routes.dat";
-    Graph graph = Graph(airport_file, route_file);    
+    Graph graph = Graph(airport_file, route_file);
 }
 
-TEST_CASE("TEST parseFile small real", "[Graph]") {
-    std::string airport_file = "../tests/Airport_test_real.dat";
-    std::string route_file = "../tests/Route_test_small.dat";
+TEST_CASE("TEST BFS # real data", "[Graph]") {
+    std::string airport_file = "../data/airports.dat";
+    std::string route_file = "../data/routes.dat";
     Graph graph = Graph(airport_file, route_file);
-    
+    BFS bfs = BFS(graph);
+    std::vector<int> all0 = bfs.traverseAll(graph, 3364);
+    std::cout << all0.size() << std::endl;
+}
+
+TEST_CASE("Find shortest path # real data", "[Dijkstra]") {
+    std::string airport_file = "../data/airports.dat";
+    std::string route_file = "../data/routes.dat";
+    Graph graph = Graph(airport_file, route_file);
+    Dijkstra dij = Dijkstra(graph);
+
+    std::string path1 = dij.getshortpath(graph, 3364, 3406);
+    std::string path2 = dij.getshortpath(graph, 3364, 3484);
+    std::string path3 = dij.getshortpath(graph, 3373, 3484);
+    std::string path4 = dij.getshortpath(graph, 3373, 4049);
+    REQUIRE(path1 == "3364 3406 ");
+    REQUIRE(path2 == "3364 3484 ");
+    REQUIRE(path3 == "3373 3370 3484 ");
+    REQUIRE(path4 == "3373 3406 3830 4049 ");
+}
+
+TEST_CASE("Find important airpors # real data", "[PageRank]") {
+    std::string airport_file = "../data/airports.dat";
+    std::string route_file = "../data/routes.dat";
+    Graph graph = Graph(airport_file, route_file);
+    PageRank pr = PageRank();
+    pr.pageRank(graph, 10, 0.85);
+    Airport air = pr.findImportantAP();
+    std::cout << air.getName() << std::endl;
 }
