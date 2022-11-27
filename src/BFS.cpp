@@ -6,6 +6,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <map>
 using namespace std;
 BFS::BFS(const Graph & graph){
     airport_graph_ = graph;
@@ -13,9 +14,10 @@ BFS::BFS(const Graph & graph){
 }
 
 std::vector<int> BFS::traverseAll(const Graph & graph, int srcID){
-    std::vector<bool> visited;
-    visited.resize(number,false);
+    std::map<int, bool> visited;
+
     vector<int> airports;
+
     std::queue<int> BFS_queue;
     visited[srcID] = true;
     BFS_queue.push(srcID);
@@ -30,13 +32,21 @@ std::vector<int> BFS::traverseAll(const Graph & graph, int srcID){
         }
         airports.push_back(srcID);
         BFS_queue.pop();
-
         for (auto it: matrix_[srcID]){
-            if (!visited[it.first]){
+            if (visited.find(it.first) == visited.end() ){
                 visited[it.first] = true;
                 BFS_queue.push(it.first);
             }
+            // std::cout << 1 << std::endl;
         }
+
+        // for (auto it: matrix_[srcID]){
+        //     if (!visited[it.first]){
+        //         visited[it.first] = true;
+        //         BFS_queue.push(it.first);
+        //     }
+        //     std::cout << 1 << std::endl;
+        // }
     }
     return airports;
 }

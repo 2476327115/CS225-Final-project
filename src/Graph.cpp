@@ -180,7 +180,10 @@ void Graph::parseEdges(const std::string& filename) {
             int dstId = std::stoi(dstID);
             int stop_int = std::stoi(stop);
             Route route(AirlineId, Airline, srcId, dstId, stop_int);
-            insertEdge(route, srcId, dstId);
+            if(Airports.find(srcId) != Airports.end() && Airports.find(dstId) != Airports.end()){
+                insertEdge(route, srcId, dstId);
+            }
+            
         }
     }
     Route_File.close();
