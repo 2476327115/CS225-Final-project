@@ -148,3 +148,12 @@ TEST_CASE("TEST parseFile small real", "[Graph]") {
     Graph graph = Graph(airport_file, route_file);
     
 }
+
+TEST_CASE("TEST BFS # real data", "[Graph]") {
+    std::string airport_file = "../data/airports.dat";
+    std::string route_file = "../data/routes.dat";
+    Graph graph = Graph(airport_file, route_file);
+    BFS bfs = BFS(graph);
+    std::vector<int> all0 = bfs.traverseAll(graph, 4078);
+    std::cout << all0.size() << std::endl;
+}
