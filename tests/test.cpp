@@ -192,6 +192,14 @@ TEST_CASE("Find shortest path # real data", "[Dijkstra]") {
     REQUIRE(path4 == "3373 3406 3830 4049 ");
 }
 
+TEST_CASE("TEST parseFile # large dataset", "[Graph]") {
+    std::string airport_file = "../tests/Airport_test_small.dat";
+    std::string route_file = "../tests/Route_test_small.dat";
+    Graph graph = Graph(airport_file, route_file);
+
+    std::cout << "large dataset: " << graph.getAdjacency_matrix().size() << std::endl;
+}
+
 // This test consume so much time. Maybe reduce the time diffculty in next phase
 
 /*

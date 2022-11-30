@@ -132,6 +132,8 @@ const std::unordered_map<int, Airport> Graph::getAirports() {
 
 //std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
 
+
+
 void Graph::printAirportInfo() {
     for (auto air : Airports) {
         std::cout << air.second.getID() << "\t" << air.second.getName() << std::endl;
@@ -146,7 +148,8 @@ std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getAdjacency_matri
 void Graph::parseEdges(const std::string& filename) { 
     std::ifstream Route_File(filename);
     std::string word;
-
+    int num0 = 0;
+    int num1 = 0;
     if (Route_File.is_open()) {
 
         /* Reads a line from `wordsFile` into `word` until the file ends. */
@@ -179,14 +182,17 @@ void Graph::parseEdges(const std::string& filename) {
             // insertEdge(route, srcId, dstId);
             if(Airports.find(srcId) != Airports.end() && Airports.find(dstId) != Airports.end()){
                 insertEdge(route, srcId, dstId);
+                num0++;
             }
+            else num1++;
             // else{
             //     std::cout << srcId << std::endl;
             //     std::cout << dstId << std::endl;
             // }
             
         }
-        // std::cout << i <<std::endl;
+        std::cout << "The number of routes with founded airports is " << num0 <<std::endl;
+        std::cout << "The number of routes with unfounded airports is " << num1 <<std::endl;
 
     }
     Route_File.close();

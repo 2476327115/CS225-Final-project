@@ -54,7 +54,7 @@ void Dijkstra::insertWeightmatrix()
             double weight = 0.0;
             if (tempedge.getWeights() != 0)
             {
-                weight = (double)(1 / (double)(tempedge.getWeights()));
+                weight = (double)(1 / (double)(tempedge.getWeights())); //get the value of 1/number of routes in map
             }
             else
             {
@@ -70,7 +70,7 @@ std::unordered_map<int, std::string> Dijkstra::dijkstra(int srcID)
     std::unordered_map<int, std::string> dist;
     std::unordered_map<int, double> distweight;
     std::unordered_map<int, bool> sptSet; // iterator or not
-    std::unordered_map<int, int> step;
+    std::unordered_map<int, int> step;//the number of transfer steps
     std::unordered_map<int, bool> finish;
     std::queue<PAP> priorityQ;
     for (auto itr : Airports_)
