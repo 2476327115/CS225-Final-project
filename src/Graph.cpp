@@ -163,13 +163,8 @@ void Graph::parseVertices(const std::string& filename){
             ID.clear();
             Name.clear();
             City.clear();
-<<<<<<< HEAD
-            latitude.clear();           
-            longtitude.clear();
-=======
             Latitude.clear();           
             Longtitude.clear();
->>>>>>> main
         }
     }
     Ap_File.close();

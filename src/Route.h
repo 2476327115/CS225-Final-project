@@ -21,9 +21,5 @@ class Route{
         int srcID_; 
         int dstID_;
         int stop_;
-        
-
-
-
 };
 

@@ -10,11 +10,7 @@ Airport::Airport(){
 
 }
 
-<<<<<<< HEAD
-Airport::Airport(int id, std::string name, std::string city, float latitude, float longitude) {
-=======
 Airport::Airport(int id, std::string name, std::string city, std::string country, double latitude, double longitude) {
->>>>>>> main
     id_ = id;
     name_ = name;
     city_ = city;

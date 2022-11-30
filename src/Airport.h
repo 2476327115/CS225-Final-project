@@ -11,11 +11,7 @@ class Airport {
         double longitude_;
     public:
         Airport();
-<<<<<<< HEAD
-        Airport(int id, std::string name, std::string city, float latitude, float longitude);
-=======
         Airport(int id, std::string name, std::string city, std::string country_, double latitude, double longitude);
->>>>>>> main
         Airport(const Airport& other);
         int getID();
         std::string getName();
