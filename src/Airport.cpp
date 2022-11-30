@@ -5,15 +5,20 @@ Airport::Airport(){
     id_ = 0;
     name_ = "";
     city_ = "";
-    latitude_ = "";
-    longitude_ = "";
+    latitude_ = 0.0;
+    longitude_ = 0.0;
 
 }
 
+<<<<<<< HEAD
 Airport::Airport(int id, std::string name, std::string city, float latitude, float longitude) {
+=======
+Airport::Airport(int id, std::string name, std::string city, std::string country, double latitude, double longitude) {
+>>>>>>> main
     id_ = id;
     name_ = name;
     city_ = city;
+    country_ = country;
     latitude_ = latitude;
     longitude_ = longitude;
 }

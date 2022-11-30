@@ -155,6 +155,30 @@ Airport.cpp.s:
 	cd /workspaces/CS225-Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Airport.cpp.s
 .PHONY : Airport.cpp.s
 
+BFS.o: BFS.cpp.o
+.PHONY : BFS.o
+
+# target to build an object file
+BFS.cpp.o:
+	cd /workspaces/CS225-Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/BFS.cpp.o
+.PHONY : BFS.cpp.o
+
+BFS.i: BFS.cpp.i
+.PHONY : BFS.i
+
+# target to preprocess a source file
+BFS.cpp.i:
+	cd /workspaces/CS225-Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/BFS.cpp.i
+.PHONY : BFS.cpp.i
+
+BFS.s: BFS.cpp.s
+.PHONY : BFS.s
+
+# target to generate assembly for a file
+BFS.cpp.s:
+	cd /workspaces/CS225-Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/BFS.cpp.s
+.PHONY : BFS.cpp.s
+
 Dijkstra.o: Dijkstra.cpp.o
 .PHONY : Dijkstra.o
 
@@ -227,6 +251,30 @@ Graph.cpp.s:
 	cd /workspaces/CS225-Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Graph.cpp.s
 .PHONY : Graph.cpp.s
 
+PageRank.o: PageRank.cpp.o
+.PHONY : PageRank.o
+
+# target to build an object file
+PageRank.cpp.o:
+	cd /workspaces/CS225-Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/PageRank.cpp.o
+.PHONY : PageRank.cpp.o
+
+PageRank.i: PageRank.cpp.i
+.PHONY : PageRank.i
+
+# target to preprocess a source file
+PageRank.cpp.i:
+	cd /workspaces/CS225-Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/PageRank.cpp.i
+.PHONY : PageRank.cpp.i
+
+PageRank.s: PageRank.cpp.s
+.PHONY : PageRank.s
+
+# target to generate assembly for a file
+PageRank.cpp.s:
+	cd /workspaces/CS225-Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/PageRank.cpp.s
+.PHONY : PageRank.cpp.s
+
 Route.o: Route.cpp.o
 .PHONY : Route.o
 
@@ -263,6 +311,9 @@ help:
 	@echo "... Airport.o"
 	@echo "... Airport.i"
 	@echo "... Airport.s"
+	@echo "... BFS.o"
+	@echo "... BFS.i"
+	@echo "... BFS.s"
 	@echo "... Dijkstra.o"
 	@echo "... Dijkstra.i"
 	@echo "... Dijkstra.s"
@@ -272,6 +323,9 @@ help:
 	@echo "... Graph.o"
 	@echo "... Graph.i"
 	@echo "... Graph.s"
+	@echo "... PageRank.o"
+	@echo "... PageRank.i"
+	@echo "... PageRank.s"
 	@echo "... Route.o"
 	@echo "... Route.i"
 	@echo "... Route.s"

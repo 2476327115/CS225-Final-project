@@ -30,4 +30,3 @@ class Dijkstra {
     int dstID_;
 
 };
-
