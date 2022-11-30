@@ -30,6 +30,9 @@ class Graph {
         const std::unordered_map<int, std::unordered_map<int, Edge>> getMatrix();
         const std::unordered_map<int, Airport> getAirports();
         // void createGraph();
+
+        std::string getAirportName(int id);
+        int getAirportId(std::string name);
         
         std::unordered_map<int, std::unordered_map<int, Edge>> getAdjacency_matrix();
         bool operator==(const Graph & other);
