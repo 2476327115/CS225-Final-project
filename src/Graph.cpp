@@ -146,11 +146,6 @@ std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getAdjacency_matri
 void Graph::parseEdges(const std::string& filename) { 
     std::ifstream Route_File(filename);
     std::string word;
-    std::string Airline;
-    std::string AirlineID;
-    std::string srcID;
-    std::string dstID;
-    std::string stop;
 
     if (Route_File.is_open()) {
 
@@ -159,9 +154,11 @@ void Graph::parseEdges(const std::string& filename) {
         // BA,1355,SIN,3316,LHR,507,,0,744 777
         // int i = 0;
         while (getline(Route_File, word)) {
+            
             // std::cout << "times: " << i++ << std::endl;
             std::vector<std::string> v = split(word, ",");
             if(v[3].find("\\N") != std::string::npos || v[5].find("\\N") != std::string::npos) continue;
+            // i++;
             std::string Airline = v[0];
             std::string AirlineID = v[1];
             std::string srcID = v[3];
@@ -179,13 +176,22 @@ void Graph::parseEdges(const std::string& filename) {
             int dstId = std::stoi(dstID);
             int stop_int = std::stoi(stop);
             Route route(AirlineId, Airline, srcId, dstId, stop_int);
+            // insertEdge(route, srcId, dstId);
             if(Airports.find(srcId) != Airports.end() && Airports.find(dstId) != Airports.end()){
                 insertEdge(route, srcId, dstId);
             }
+            // else{
+            //     std::cout << srcId << std::endl;
+            //     std::cout << dstId << std::endl;
+            // }
             
         }
+        // std::cout << i <<std::endl;
+
     }
     Route_File.close();
+    
+    
 }
 
 std::vector<std::string> Graph::split(std::string str,std::string pattern)

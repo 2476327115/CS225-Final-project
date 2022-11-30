@@ -156,4 +156,19 @@ TEST_CASE("TEST BFS # real data", "[Graph]") {
     BFS bfs = BFS(graph);
     std::vector<int> all0 = bfs.traverseAll(graph, 4078);
     std::cout << all0.size() << std::endl;
+    
+}
+
+TEST_CASE("TEST construct graph # real data", "[Graph]") {
+    std::string airport_file = "../data/airports.dat";
+    std::string route_file = "../data/routes.dat";
+    Graph graph = Graph(airport_file, route_file);
+    std::cout << "Airport number:" << graph.getAirports().size() << std::endl;
+    int route = 0;
+    for (auto it : graph.getAdjacency_matrix()) {
+        for (auto b : it.second) {
+            route++;
+        }
+    }
+    std::cout << "Route number:" << route << std::endl;
 }
