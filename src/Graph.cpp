@@ -11,6 +11,15 @@
 Graph::Graph(std::string& Airport_File, std::string& Route_File){
     parseVertices(Airport_File);
     parseEdges(Route_File);
+
+    // for(auto it : adjacency_matrix){
+    //     if(Airports.find(it.first) == Airports.end()){
+    //         temp_Airports[it.first] = Airports[it.first];
+    //     }
+    //     for
+    // }
+    std::cout << "the size of counted airports in airport.dat is "<< airports.size() << std::endl;
+    std::cout << "the size of counted airports in route.dat is "<< Airports.size() << std::endl;
 }
 
 
@@ -91,18 +100,11 @@ void Graph::parseVertices(const std::string& filename){
 
 
 void Graph::insertVertex(int ID, Airport airport){
-    Airports[ID] = airport;   
+    airports[ID] = airport;   
 }
 
+
 void Graph::insertEdge(Route route, int srcID, int dstID){
-    // if (adjacency_matrix.find(srcID) != adjacency_matrix.end() && adjacency_matrix[srcID].find(dstID) != adjacency_matrix[srcID].end()) {
-        
-    //     // if srcID and dstID found
-    //     // 我没太看明白
-    //     // 这里是不是应该加Edge里面的route和改weigh
-    //     // 这个条件判断是不是和else里面的一样啊
-    //     return;
-    // }
     if (adjacency_matrix.find(srcID) == adjacency_matrix.end()) {
         // if srcID not found
         adjacency_matrix[srcID] = std::unordered_map<int, Edge>();
@@ -115,6 +117,9 @@ void Graph::insertEdge(Route route, int srcID, int dstID){
     else {
         adjacency_matrix[srcID][dstID].addRoute(route);
     }
+
+    
+
 
 }
 
@@ -130,7 +135,13 @@ const std::unordered_map<int, Airport> Graph::getAirports() {
    return Airports;
 }
 
+const std::unordered_map<int, Airport> Graph::getairports() {
+   return airports;
+}
+
 //std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
+
+
 
 void Graph::printAirportInfo() {
     for (auto air : Airports) {
@@ -143,15 +154,13 @@ std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getAdjacency_matri
     return adjacency_matrix;
 }
 
+
+
 void Graph::parseEdges(const std::string& filename) { 
     std::ifstream Route_File(filename);
     std::string word;
-    std::string Airline;
-    std::string AirlineID;
-    std::string srcID;
-    std::string dstID;
-    std::string stop;
-
+    // int num0 = 0;
+    // int num1 = 0;
     if (Route_File.is_open()) {
 
         /* Reads a line from `wordsFile` into `word` until the file ends. */
@@ -159,33 +168,37 @@ void Graph::parseEdges(const std::string& filename) {
         // BA,1355,SIN,3316,LHR,507,,0,744 777
         // int i = 0;
         while (getline(Route_File, word)) {
+            
             // std::cout << "times: " << i++ << std::endl;
             std::vector<std::string> v = split(word, ",");
             if(v[3].find("\\N") != std::string::npos || v[5].find("\\N") != std::string::npos) continue;
+            // i++;
             std::string Airline = v[0];
             std::string AirlineID = v[1];
             std::string srcID = v[3];
             std::string dstID = v[5];
             std::string stop = v[7];
 
-            // std::cout << Airline << std::endl;
-            // std::cout << AirlineID << std::endl;
-            // std::cout << srcID << std::endl;
-            // std::cout << dstID << std::endl;
-            // std::cout << stop << std::endl;
             int AirlineId = 0;
             if(AirlineID.find("\\N") == std::string::npos) AirlineId = std::stoi(AirlineID);
             int srcId = std::stoi(srcID);
             int dstId = std::stoi(dstID);
             int stop_int = std::stoi(stop);
             Route route(AirlineId, Airline, srcId, dstId, stop_int);
-            if(Airports.find(srcId) != Airports.end() && Airports.find(dstId) != Airports.end()){
+            // insertEdge(route, srcId, dstId);
+            if(airports.find(srcId) != airports.end() && airports.find(dstId) != airports.end()){
+                Airports[srcId] = airports[srcId];
+                Airports[dstId] = airports[dstId];
                 insertEdge(route, srcId, dstId);
+                // num0++;
             }
             
         }
+
     }
     Route_File.close();
+    
+    
 }
 
 std::vector<std::string> Graph::split(std::string str,std::string pattern)

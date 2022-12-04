@@ -1,5 +1,5 @@
 #include "Route.h"
-Route::Route(){
+Route::Route() {
     AirlineID_ = 0;
     Airline_ = "";
     srcID_ = 0; 
@@ -7,7 +7,7 @@ Route::Route(){
     stop_ = 0;
 }
 
-Route::Route(int AirlineID, std::string Airline, int srcID, int dstID, int stop){
+Route::Route(int AirlineID, std::string Airline, int srcID, int dstID, int stop) {
     AirlineID_ = AirlineID;
     Airline_ = Airline ;
     srcID_ = srcID; 
@@ -35,15 +35,15 @@ void Route::setStop(int stop) {
     stop_ = stop;
 }
 
-int Route::getsrcID(){
+int Route::getsrcID() {
     return srcID_;
 }
 
-int Route::getdstID(){
+int Route::getdstID() {
     return dstID_;
 }
 
-int Route::getAirlineID(){
+int Route::getAirlineID() {
     return AirlineID_;
 }
 
