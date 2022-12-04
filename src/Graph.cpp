@@ -11,6 +11,15 @@
 Graph::Graph(std::string& Airport_File, std::string& Route_File){
     parseVertices(Airport_File);
     parseEdges(Route_File);
+
+    // for(auto it : adjacency_matrix){
+    //     if(Airports.find(it.first) == Airports.end()){
+    //         temp_Airports[it.first] = Airports[it.first];
+    //     }
+    //     for
+    // }
+    std::cout << "the size of counted airports in airport.dat is "<< airports.size() << std::endl;
+    std::cout << "the size of counted airports in route.dat is "<< Airports.size() << std::endl;
 }
 
 
@@ -91,18 +100,11 @@ void Graph::parseVertices(const std::string& filename){
 
 
 void Graph::insertVertex(int ID, Airport airport){
-    Airports[ID] = airport;   
+    airports[ID] = airport;   
 }
 
+
 void Graph::insertEdge(Route route, int srcID, int dstID){
-    // if (adjacency_matrix.find(srcID) != adjacency_matrix.end() && adjacency_matrix[srcID].find(dstID) != adjacency_matrix[srcID].end()) {
-        
-    //     // if srcID and dstID found
-    //     // 我没太看明白
-    //     // 这里是不是应该加Edge里面的route和改weigh
-    //     // 这个条件判断是不是和else里面的一样啊
-    //     return;
-    // }
     if (adjacency_matrix.find(srcID) == adjacency_matrix.end()) {
         // if srcID not found
         adjacency_matrix[srcID] = std::unordered_map<int, Edge>();
@@ -116,6 +118,9 @@ void Graph::insertEdge(Route route, int srcID, int dstID){
         adjacency_matrix[srcID][dstID].addRoute(route);
     }
 
+    
+
+
 }
 
 int Graph::getAirportNum() {
@@ -128,6 +133,10 @@ const std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getMatrix() 
 
 const std::unordered_map<int, Airport> Graph::getAirports() {
    return Airports;
+}
+
+const std::unordered_map<int, Airport> Graph::getairports() {
+   return airports;
 }
 
 //std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
@@ -145,11 +154,13 @@ std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getAdjacency_matri
     return adjacency_matrix;
 }
 
+
+
 void Graph::parseEdges(const std::string& filename) { 
     std::ifstream Route_File(filename);
     std::string word;
-    int num0 = 0;
-    int num1 = 0;
+    // int num0 = 0;
+    // int num1 = 0;
     if (Route_File.is_open()) {
 
         /* Reads a line from `wordsFile` into `word` until the file ends. */
@@ -168,11 +179,6 @@ void Graph::parseEdges(const std::string& filename) {
             std::string dstID = v[5];
             std::string stop = v[7];
 
-            // std::cout << Airline << std::endl;
-            // std::cout << AirlineID << std::endl;
-            // std::cout << srcID << std::endl;
-            // std::cout << dstID << std::endl;
-            // std::cout << stop << std::endl;
             int AirlineId = 0;
             if(AirlineID.find("\\N") == std::string::npos) AirlineId = std::stoi(AirlineID);
             int srcId = std::stoi(srcID);
@@ -180,19 +186,14 @@ void Graph::parseEdges(const std::string& filename) {
             int stop_int = std::stoi(stop);
             Route route(AirlineId, Airline, srcId, dstId, stop_int);
             // insertEdge(route, srcId, dstId);
-            if(Airports.find(srcId) != Airports.end() && Airports.find(dstId) != Airports.end()){
+            if(airports.find(srcId) != airports.end() && airports.find(dstId) != airports.end()){
+                Airports[srcId] = airports[srcId];
+                Airports[dstId] = airports[dstId];
                 insertEdge(route, srcId, dstId);
-                num0++;
+                // num0++;
             }
-            else num1++;
-            // else{
-            //     std::cout << srcId << std::endl;
-            //     std::cout << dstId << std::endl;
-            // }
             
         }
-        std::cout << "The number of routes with founded airports is " << num0 <<std::endl;
-        std::cout << "The number of routes with unfounded airports is " << num1 <<std::endl;
 
     }
     Route_File.close();
