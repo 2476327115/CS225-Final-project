@@ -15,9 +15,14 @@ public:
     BFS(const Graph & graph);
     std::vector<int> traverseAll(const Graph & graph, int srcID); //tranverse vertices(airports)
     std::vector<int> traverse_with_dest(const Graph & graph, int srcID, int destID); //tranverse airports between two airports
+    std::unordered_map<int, std::string> bfsHelper(int srcID);
+    std::string bfsGetShortstep(int srcID, int dstID);
+    void insertAmatrix(Graph graph);
+    void insertAirports(Graph graph);
 
 private:
     Graph airport_graph_; // the graph with all the data
     int number; // number of airports
     std::unordered_map<int, std::unordered_map<int, Edge>> matrix_;// a matrix of graph which contains srcID of all the airports
+    mutable std::unordered_map<int, Airport> Airports_;
 };

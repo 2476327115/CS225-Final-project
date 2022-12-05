@@ -8,6 +8,7 @@
 #include <fstream>
 #include <map>
 using namespace std;
+typedef std::pair<int, int> PAP; // pair path
 BFS::BFS(const Graph &graph)
 {
     airport_graph_ = graph;
@@ -99,4 +100,78 @@ std::vector<int> BFS::traverseAll(const Graph &graph, int srcID)
         }
     }
     return airports; //return vector
+ }
+
+ void BFS::insertAmatrix(Graph graph){
+    std::unordered_map<int, std::unordered_map<int, Edge>> temp = graph.getMatrix();
+    std::unordered_map<int, std::unordered_map<int, Edge>>::iterator itr1;
+    for (itr1 = temp.begin(); itr1 != temp.end(); ++itr1)
+    {
+        int srcid = itr1->first;
+        std::unordered_map<int, Edge> tempdest = itr1->second;
+        for (auto itr2 : tempdest)
+        {
+            int desid = itr2.first;
+            matrix_[srcid][desid] = itr2.second;
+        }
+    }
+    return;
+ }
+
+ void BFS::insertAirports(Graph graph){
+    std::unordered_map<int, Airport> temp = graph.getAirports();
+    for (auto itr1 : temp)
+    {
+        Airports_[itr1.first] = itr1.second;
+    }
+    return;
+ }
+
+ std::unordered_map<int, std::string> BFS::bfsHelper(int srcID){
+    std::unordered_map<int, std::string> dist;//store the path
+    std::unordered_map<int, bool> sptSet; // iterator or not
+    std::unordered_map<int, int> step;//the number of transfer steps
+    std::queue<PAP> priorityQ;
+    for (auto itr : Airports_)        //initialize data
+    {
+        int tempid = itr.first;
+        sptSet[tempid] = false;
+        dist[tempid] = std::to_string(srcID) + ' ';
+        step[tempid] = 200;
+    }
+    step[srcID] = 0;
+    priorityQ.push(PAP(srcID, 0));
+    while (!priorityQ.empty())
+    {
+        while (priorityQ.empty() == false && sptSet[(priorityQ.front()).first] == true) //each airport only take one time
+            priorityQ.pop();
+        if (priorityQ.empty() == true)
+            return dist;
+
+        PAP temppair = priorityQ.front();
+        priorityQ.pop();
+        int tmepid = temppair.first;
+        sptSet[tmepid] = true;
+        std::unordered_map<int, Edge> adjmap = matrix_[tmepid]; 
+
+        for (auto itr2 : adjmap) //iterater the matrix_
+        {
+            int tempstep = step[tmepid] + 1;
+            if (tempstep < step[itr2.first]) //if new step is smaller than past step
+            {
+                step[itr2.first] = tempstep;
+                dist[itr2.first] = dist[tmepid] + std::to_string(itr2.first) + ' ';
+                priorityQ.push(PAP(itr2.first, step[itr2.first]));
+            }
+        }
+    }
+    return dist;
+ }
+
+ std::string BFS::bfsGetShortstep(int srcID, int dstID){
+    insertAmatrix(airport_graph_);
+    insertAirports(airport_graph_);
+    std::unordered_map<int, std::string> result = bfsHelper(srcID);
+    std::string path = result[dstID];
+    return path;
  }

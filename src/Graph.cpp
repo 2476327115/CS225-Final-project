@@ -8,18 +8,17 @@
 #include <ctype.h>
 #include "Edge.h"
 
+/**
+ * constructor to create the graph and parse the data of airports and routes into it.
+ * The graph has the airports as vertices and routes as edges. In this case, we consider
+ * the routes between the same source airport and destination airport as a single edge
+ * between vertices.
+ * @param Airport_File - data file about airport information
+ * @param Route_File - data file about route information
+ **/
 Graph::Graph(std::string& Airport_File, std::string& Route_File){
     parseVertices(Airport_File);
     parseEdges(Route_File);
-
-    // for(auto it : adjacency_matrix){
-    //     if(Airports.find(it.first) == Airports.end()){
-    //         temp_Airports[it.first] = Airports[it.first];
-    //     }
-    //     for
-    // }
-    std::cout << "the size of counted airports in airport.dat is "<< airports.size() << std::endl;
-    std::cout << "the size of counted airports in route.dat is "<< Airports.size() << std::endl;
 }
 
 
@@ -36,9 +35,7 @@ void Graph::parseVertices(const std::string& filename){
     */
     if (Ap_File.is_open()) {
         std::string word;
-        // int i = 1;
         while (getline(Ap_File, word)) {
-            // std::cout << "times: " << i++ << std::endl;
             std::string ID;
             std::string Name;
             std::string City;
@@ -46,46 +43,55 @@ void Graph::parseVertices(const std::string& filename){
             std::string Latitude;
             std::string Longtitude;
 
-            // count ,
+            // to count ','
             int count0 = 0;
-            // count "
+            // to count '"'
             int count1 = 0;
             for(int i = 0; i < (int) word.size(); i++){
                 if(word.at(i) == '"') count1++;
+                // count ',' outside the '"' to avoid counting ',' inside the name of the airport, country, or city
                 if(word.at(i) == ',' && count1 % 2 == 0) count0++;
-                // ID
+                // parse the information of ID
                 if(count0 == 0){
                     ID.push_back(word.at(i));
                 }
-                // Name
+                // parse the information of Name
                 if(count0 == 1){
                     Name.push_back(word.at(i));
                 }
+                // parse the information of city
                 if(count0 == 2){
                     if(word.at(i) != '"' && word.at(i) != ',') City.push_back(word.at(i));
                 }
+                // parse the information of country
                 if(count0 == 3){
                     if(word.at(i) != '"' && word.at(i) != ',') Country.push_back(word.at(i));
                 }
+                // parse the information of latitude
                 if(count0 == 6){
                     if(word.at(i) != '"' && word.at(i) != ',') Latitude.push_back(word.at(i));
                 }
+                // parse the information of longtitude
                 if(count0 == 7){
                     if(word.at(i) != '"' && word.at(i) != ',') Longtitude.push_back(word.at(i));
                 }
                 else continue;
             }
             
-            
+            // filter the comma and quotation marks before and after the name
             Name = Name.substr(2, Name.size()-3);
 
-            
+            // convert the string of ID to integer
             int Id = std::stoi(ID);
+            // convert the string of latitude to double
             double latitude = std::stod(Latitude);
+            // convert the string of longtitude to double
             double longtitude = std::stod(Longtitude);
-            
+            // create an object of the airport data we parse
             Airport airport(Id, Name, City, Country, latitude, longtitude);
+            // insert the airport as a vertex;
             insertVertex(Id, airport);
+            // clear the string 
             ID.clear();
             Name.clear();
             City.clear();
@@ -159,8 +165,8 @@ std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getAdjacency_matri
 void Graph::parseEdges(const std::string& filename) { 
     std::ifstream Route_File(filename);
     std::string word;
-    // int num0 = 0;
-    // int num1 = 0;
+    // the number of invalid routes
+    int invalid = 0;
     if (Route_File.is_open()) {
 
         /* Reads a line from `wordsFile` into `word` until the file ends. */
@@ -171,7 +177,10 @@ void Graph::parseEdges(const std::string& filename) {
             
             // std::cout << "times: " << i++ << std::endl;
             std::vector<std::string> v = split(word, ",");
-            if(v[3].find("\\N") != std::string::npos || v[5].find("\\N") != std::string::npos) continue;
+            if(v[3].find("\\N") != std::string::npos || v[5].find("\\N") != std::string::npos){
+                invalid++;
+                continue;
+            } 
             // i++;
             std::string Airline = v[0];
             std::string AirlineID = v[1];
@@ -196,6 +205,7 @@ void Graph::parseEdges(const std::string& filename) {
         }
 
     }
+    std::cout << "the number of invalid routes is " << invalid << std::endl;
     Route_File.close();
     
     

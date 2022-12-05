@@ -46,15 +46,19 @@ class Graph {
         **/
         void parseEdges(const std::string& filename);
 
-        // insert a new airport as vertex into the graph by adding it into the map of airport 
-        // @param ID - data file for data parsing
-        // @param airport - data file for data parsing
+        /**
+         * insert a new airport as vertex into the graph by adding it into the map of airport 
+         * @param ID - Airport ID
+         * @param airport - The airport object corresponding with the Airport
+        **/
         void insertVertex(int ID, Airport airport);
-
-        // insert a new route as an edge into the graph by adding it into adjacency matrix of 
-        // 
-        // @param ID - data file for data parsing
-        // @param airport - data file for data parsing
+       
+        /**
+         * insert a new route as an edge into the graph by adding it into adjacency matrix
+         * @param route - the route we want to add in the graph
+         * @param srcID - the source airport ID of the route
+         * @param dstID - the destination airport ID of the route
+        **/
         void insertEdge(Route route, int srcID, int dstID);
         void printAirportInfo();
         int getAirportNum();

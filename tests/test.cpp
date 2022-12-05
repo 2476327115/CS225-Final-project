@@ -133,7 +133,7 @@ TEST_CASE("TEST BFS with dest # small dataset", "[BFS]") {
     // for(auto it : dest1){
     //     std::cout << it << std::endl;
     // }
-    REQUIRE(dest1.back() == 3);
+    REQUIRE(dest1.back() != 4);
 }
 
 TEST_CASE("TEST shortest path # small dataset", "[Dijkstra]") {
@@ -230,28 +230,56 @@ TEST_CASE("Find important airpors # real data", "[PageRank]") {
 }
 */
 
-TEST_CASE("Find important airpors # real data", "[PageRank]") {
+// TEST_CASE("Find important airpors # real data", "[PageRank]") {
+//     std::string airport_file = "../data/airports.dat";
+//     std::string route_file = "../data/routes.dat";
+//     Graph graph = Graph(airport_file, route_file);
+//     PageRank pr = PageRank();
+//     auto start = std::chrono::steady_clock::now();
+//     pr.pageRank(graph, 10, 0.85);
+//     auto end = std::chrono::steady_clock::now();
+//     std::chrono::duration<double> elapsed_seconds = end-start;
+//     std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+
+//     // Airport air = pr.findImportantAP();
+//     // std::cout << air.getName() << std::endl;
+
+//     std::vector<int> v = pr.getRank_AP();
+//     int j = 0;
+//     for (auto i : v) {
+//         std:: cout << i << "\t";
+//         j++;
+//         if(j > 10) break;
+//     }
+//     std::cout << std::endl;
+//     Airport air = pr.findImportantAP();
+//     std::cout << air.getName() << std::endl;
+// }
+
+TEST_CASE("TEST bfsshortest step # small dataset", "[BFS]") {
+    std::string airport_file = "../tests/Airport_test_small.dat";
+    std::string route_file = "../tests/Route_test_small.dat";
+    Graph graph = Graph(airport_file, route_file);
+    BFS bfs = BFS(graph);
+    
+    std::string str0 = bfs.bfsGetShortstep(0, 3);
+    std::string str1 = bfs.bfsGetShortstep(0, 1);
+    REQUIRE(str0 == "0 1 3 ");
+    REQUIRE(str1 == "0 1 ");
+}
+
+TEST_CASE("TEST bfsshortest step # real data", "[BFS]") {
     std::string airport_file = "../data/airports.dat";
     std::string route_file = "../data/routes.dat";
     Graph graph = Graph(airport_file, route_file);
-    PageRank pr = PageRank();
-    auto start = std::chrono::steady_clock::now();
-    pr.pageRank(graph, 10, 0.85);
-    auto end = std::chrono::steady_clock::now();
-    std::chrono::duration<double> elapsed_seconds = end-start;
-    std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+    BFS bfs = BFS(graph);
 
-    // Airport air = pr.findImportantAP();
-    // std::cout << air.getName() << std::endl;
-
-    std::vector<int> v = pr.getRank_AP();
-    int j = 0;
-    for (auto i : v) {
-        std:: cout << i << "\t";
-        j++;
-        if(j > 10) break;
-    }
-    std::cout << std::endl;
-    Airport air = pr.findImportantAP();
-    std::cout << air.getName() << std::endl;
+    std::string path1 = bfs.bfsGetShortstep(3364, 3406);
+    std::string path2 = bfs.bfsGetShortstep(3364, 3484);
+    std::string path3 = bfs.bfsGetShortstep(3373, 3484);
+    std::string path4 = bfs.bfsGetShortstep(3373, 4049);
+    REQUIRE(path1 == "3364 3406 ");
+    REQUIRE(path2 == "3364 3484 ");
+    REQUIRE(path3 == "3373 2276 3484 ");
+    REQUIRE(path4 == "3373 3406 3830 4049 ");
 }
