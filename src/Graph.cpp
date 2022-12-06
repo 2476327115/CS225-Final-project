@@ -205,7 +205,7 @@ void Graph::parseEdges(const std::string& filename) {
         }
 
     }
-    std::cout << "the number of invalid routes is " << invalid << std::endl;
+    // std::cout << "the number of invalid routes is " << invalid << std::endl;
     Route_File.close();
     
     
