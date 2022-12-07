@@ -160,9 +160,9 @@ void Graph::parseEdges(const std::string& filename) {
         }
 
     }
-    // std::cout << "adfvcv " << j <<std::endl;
-    // std::cout << "56789gv  " << num0 <<std::endl;
+
     std::cout << "the number of invalid routes is " << invalid << std::endl;
+    // std::cout << "the number of invalid routes is " << invalid << std::endl;
     Route_File.close();
     
     
