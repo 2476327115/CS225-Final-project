@@ -103,7 +103,7 @@ std::vector<int> BFS::traverseAll(const Graph &graph, int srcID)
  }
 
  void BFS::insertAmatrix(Graph graph){
-    std::unordered_map<int, std::unordered_map<int, Edge>> temp = graph.getMatrix();
+    std::unordered_map<int, std::unordered_map<int, Edge>> temp = graph.getAdjacency_matrix();
     std::unordered_map<int, std::unordered_map<int, Edge>>::iterator itr1;
     for (itr1 = temp.begin(); itr1 != temp.end(); ++itr1)
     {

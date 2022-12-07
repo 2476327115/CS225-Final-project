@@ -17,7 +17,7 @@ int PageRank::getOutDegree(int srcID) {
 
 std::unordered_map<int, double> PageRank::pageRank(const Graph & graph, int time, double damping_factor) {
     graph_ = graph;
-    adj_matrix_ = graph_.getMatrix();
+    adj_matrix_ = graph_.getAdjacency_matrix();
     airports = graph_.getAirports();
     number_ap = graph_.getAirportNum();
     for(auto it : airports){
