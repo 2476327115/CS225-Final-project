@@ -18,6 +18,8 @@ class Graph {
         // The airports data parsed from airports.dat
         std::unordered_map<int, Airport> airports;
         std::vector<std::string> split(std::string str, std::string pattern);
+        // the number of invalid routes
+        int invalid;
         
 
     public:
@@ -60,17 +62,29 @@ class Graph {
          * @param dstID - the destination airport ID of the route
         **/
         void insertEdge(Route route, int srcID, int dstID);
+
+        // get airport information
         void printAirportInfo();
+
+        // get the number of the airports connected in the graph
         int getAirportNum();
-        const std::unordered_map<int, std::unordered_map<int, Edge>> getMatrix();
+
+        // 
         const std::unordered_map<int, Airport> getAirports();
-        // void createGraph();
+
 
         const std::unordered_map<int, Airport> getairports();
 
         std::string getAirportName(int id);
+
         int getAirportId(std::string name);
         
         std::unordered_map<int, std::unordered_map<int, Edge>> getAdjacency_matrix();
+        
         bool operator==(const Graph & other);
+
+        /**
+         * 
+        */
+        int getInvalidRoute() {return invalid;}; 
     };

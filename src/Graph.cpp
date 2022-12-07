@@ -23,6 +23,9 @@ Graph::Graph(std::string& Airport_File, std::string& Route_File){
 
 
 void Graph::parseVertices(const std::string& filename){
+
+
+
     std::ifstream Ap_File(filename);
     std::string ID;
     std::string Name;
@@ -105,83 +108,32 @@ void Graph::parseVertices(const std::string& filename){
 
 
 
+
 void Graph::insertVertex(int ID, Airport airport){
     airports[ID] = airport;   
 }
-
-
-void Graph::insertEdge(Route route, int srcID, int dstID){
-    if (adjacency_matrix.find(srcID) == adjacency_matrix.end()) {
-        // if srcID not found
-        adjacency_matrix[srcID] = std::unordered_map<int, Edge>();
-    }
-    // adjacency_matrix[srcID][dstID] = Edge(route);
-    if(adjacency_matrix[srcID].find(dstID) == adjacency_matrix[srcID].end()){
-        // if srcID found, dstID not found
-        adjacency_matrix[srcID][dstID] = Edge(route);
-    } 
-    else {
-        adjacency_matrix[srcID][dstID].addRoute(route);
-    }
-
-    
-
-
-}
-
-int Graph::getAirportNum() {
-    return (int) Airports.size();
-}
-
-const std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getMatrix() {
-   return adjacency_matrix;
-}
-
-const std::unordered_map<int, Airport> Graph::getAirports() {
-   return Airports;
-}
-
-const std::unordered_map<int, Airport> Graph::getairports() {
-   return airports;
-}
-
-//std::unordered_map<int, std::unordered_map<int, Edge>> adjacency_matrix;
-
-
-
-void Graph::printAirportInfo() {
-    for (auto air : Airports) {
-        std::cout << air.second.getID() << "\t" << air.second.getName() << std::endl;
-    }
-}
-
-
-std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getAdjacency_matrix() {
-    return adjacency_matrix;
-}
-
 
 
 void Graph::parseEdges(const std::string& filename) { 
     std::ifstream Route_File(filename);
     std::string word;
     // the number of invalid routes
-    int invalid = 0;
+    // invalid = 0;
+    // int num0 = 0;
     if (Route_File.is_open()) {
 
         /* Reads a line from `wordsFile` into `word` until the file ends. */
         // Route(int AirlineID, std::string Airline, int srcID, int dstID, int stop){
         // BA,1355,SIN,3316,LHR,507,,0,744 777
-        // int i = 0;
         while (getline(Route_File, word)) {
             
             // std::cout << "times: " << i++ << std::endl;
             std::vector<std::string> v = split(word, ",");
             if(v[3].find("\\N") != std::string::npos || v[5].find("\\N") != std::string::npos){
+                // j++;
                 invalid++;
                 continue;
             } 
-            // i++;
             std::string Airline = v[0];
             std::string AirlineID = v[1];
             std::string srcID = v[3];
@@ -201,10 +153,15 @@ void Graph::parseEdges(const std::string& filename) {
                 insertEdge(route, srcId, dstId);
                 // num0++;
             }
+            else{
+                invalid++;
+            }
             
         }
 
     }
+
+    std::cout << "the number of invalid routes is " << invalid << std::endl;
     // std::cout << "the number of invalid routes is " << invalid << std::endl;
     Route_File.close();
     
@@ -228,5 +185,49 @@ std::vector<std::string> Graph::split(std::string str,std::string pattern)
   }
   return words;
 }
+
+
+void Graph::insertEdge(Route route, int srcID, int dstID){
+    if (adjacency_matrix.find(srcID) == adjacency_matrix.end()) {
+        // if srcID not found
+        adjacency_matrix[srcID] = std::unordered_map<int, Edge>();
+    }
+    if(adjacency_matrix[srcID].find(dstID) == adjacency_matrix[srcID].end()){
+        // if srcID found, dstID not found
+        adjacency_matrix[srcID][dstID] = Edge(route);
+    } 
+    else {
+        adjacency_matrix[srcID][dstID].addRoute(route);
+    }
+
+    
+
+
+}
+
+int Graph::getAirportNum() {
+    return (int) Airports.size();
+}
+
+const std::unordered_map<int, Airport> Graph::getAirports() {
+   return Airports;
+}
+
+const std::unordered_map<int, Airport> Graph::getairports() {
+   return airports;
+}
+
+
+void Graph::printAirportInfo() {
+    for (auto air : Airports) {
+        std::cout << air.second.getID() << "\t" << air.second.getName() << std::endl;
+    }
+}
+
+
+std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getAdjacency_matrix() {
+    return adjacency_matrix;
+}
+
 
 
