@@ -95,9 +95,10 @@ std::vector<int> BFS::traverseAll(const Graph &graph, int srcID)
             }
         }
 
-        if(airports.back() != destID){
-            std::cout << "the source and destination airport are not connected !! "<< std::endl;
-        }
+        
+    }
+    if(airports.back() != destID){
+        std::cout << "the source and destination airport are not connected !! "<< std::endl;
     }
     return airports; //return vector
  }
@@ -127,7 +128,7 @@ std::vector<int> BFS::traverseAll(const Graph &graph, int srcID)
     return;
  }
 
- std::unordered_map<int, std::string> BFS::bfsHelper(int srcID){
+    std::unordered_map<int, std::string> BFS::bfsHelper(int srcID){
     std::unordered_map<int, std::string> dist;//store the path
     std::unordered_map<int, bool> sptSet; // iterator or not
     std::unordered_map<int, int> step;//the number of transfer steps
