@@ -213,9 +213,10 @@ TEST_CASE("TEST page rank # large dataset", "[Graph]") {
     for (auto i : v) {
         std:: cout << i << "\t";
     }
-    std::cout << std::endl;
     Airport air = pg.findImportantAP();
     std::cout << air.getName() << std::endl;
+    REQUIRE(air.getName() == "Houari Boumediene Airport");
+    
 }
 
 // This test consume so much time. Maybe reduce the time diffculty in next phase

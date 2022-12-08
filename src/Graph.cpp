@@ -108,50 +108,56 @@ void Graph::parseVertices(const std::string& filename){
 
 
 
-
+/**
+ * insert a new airport as vertex into the graph by adding it into the map of airport 
+ * @param ID - Airport ID
+ * @param airport - The airport object corresponding with the Airport
+**/
 void Graph::insertVertex(int ID, Airport airport){
     airports[ID] = airport;   
 }
 
-
+/**
+ * parse the data of route information into the graph
+ * @param Airport_File - data file for data parsing
+ **/
 void Graph::parseEdges(const std::string& filename) { 
     std::ifstream Route_File(filename);
     std::string word;
-    // the number of invalid routes
-    // invalid = 0;
-    // int num0 = 0;
     if (Route_File.is_open()) {
 
         /* Reads a line from `wordsFile` into `word` until the file ends. */
         // Route(int AirlineID, std::string Airline, int srcID, int dstID, int stop){
         // BA,1355,SIN,3316,LHR,507,,0,744 777
         while (getline(Route_File, word)) {
-            
-            // std::cout << "times: " << i++ << std::endl;
+            // split the words in lines by ","
             std::vector<std::string> v = split(word, ",");
+            // if source and destination airport ID aren't found, the route isn't valid
             if(v[3].find("\\N") != std::string::npos || v[5].find("\\N") != std::string::npos){
                 // j++;
                 invalid++;
                 continue;
             } 
+            // split the lines into airline, airlineID, sourceID, destinationID, and stop
             std::string Airline = v[0];
             std::string AirlineID = v[1];
             std::string srcID = v[3];
             std::string dstID = v[5];
             std::string stop = v[7];
-
+            // if airlineID isn't found, set it to 0 since airline name still exists, the route is still valid.
             int AirlineId = 0;
             if(AirlineID.find("\\N") == std::string::npos) AirlineId = std::stoi(AirlineID);
+            // convert string to integer
             int srcId = std::stoi(srcID);
             int dstId = std::stoi(dstID);
             int stop_int = std::stoi(stop);
+            // set up the route
             Route route(AirlineId, Airline, srcId, dstId, stop_int);
-            // insertEdge(route, srcId, dstId);
+            // check whether source and destination airport exist. If not, the route is invalid
             if(airports.find(srcId) != airports.end() && airports.find(dstId) != airports.end()){
                 Airports[srcId] = airports[srcId];
                 Airports[dstId] = airports[dstId];
                 insertEdge(route, srcId, dstId);
-                // num0++;
             }
             else{
                 invalid++;
@@ -162,69 +168,79 @@ void Graph::parseEdges(const std::string& filename) {
     }
 
     std::cout << "the number of invalid routes is " << invalid << std::endl;
-    // std::cout << "the number of invalid routes is " << invalid << std::endl;
     Route_File.close();
     
     
 }
 
+/**
+ * splits the string into pieces of strings by the pattern given. Return the vector of
+ * splitted strings
+ * @param str the strings needed to split
+ * @param pattern the pattern we want to split
+ */
 std::vector<std::string> Graph::split(std::string str,std::string pattern)
-{
-  std::string::size_type position;
-  std::vector<std::string> words;
-  str += pattern;
-  int size = str.size();
- 
-  for(int i = 0; i < size; i++){
-    position = str.find(pattern,i);
-    if((int) position < size){
-      std::string s = str.substr(i, position - i);
-      words.push_back(s);
-      i = position + pattern.size()-1;
+{   
+    std::string::size_type position;
+    std::vector<std::string> words;
+    str += pattern;
+    int size = str.size();
+    for(int i = 0; i < size; i++){
+        // find the position of the pattern
+        position = str.find(pattern,i);
+        if((int) position < size){
+            // return the portion of strings from index i to the pattern
+            std::string s = str.substr(i, position - i);
+            words.push_back(s);
+            i = position + pattern.size()-1;
+        }
     }
-  }
-  return words;
+    return words;
 }
 
-
+/**
+ * insert a new route as an edge into the graph by adding it into adjacency matrix
+ * @param route - the route we want to add in the graph
+ * @param srcID - the source airport ID of the route
+ * @param dstID - the destination airport ID of the route
+ **/
 void Graph::insertEdge(Route route, int srcID, int dstID){
-    if (adjacency_matrix.find(srcID) == adjacency_matrix.end()) {
-        // if srcID not found
+    // if srcID not found, initialize the correspdoning value of the adjacency matrix
+    if (adjacency_matrix.find(srcID) == adjacency_matrix.end()) {    
         adjacency_matrix[srcID] = std::unordered_map<int, Edge>();
     }
-    if(adjacency_matrix[srcID].find(dstID) == adjacency_matrix[srcID].end()){
-        // if srcID found, dstID not found
+    // if srcID found, dstID not found, initialize the edge with the given source and destination airport
+    if(adjacency_matrix[srcID].find(dstID) == adjacency_matrix[srcID].end()){    
         adjacency_matrix[srcID][dstID] = Edge(route);
     } 
+    // add route to the existed edge with the given source and destination airport
     else {
         adjacency_matrix[srcID][dstID].addRoute(route);
-    }
-
-    
-
+    }    
 
 }
 
+// get the number of the airports connected in the graph
 int Graph::getAirportNum() {
     return (int) Airports.size();
 }
-
+// get the airports that are connected in the graph
 const std::unordered_map<int, Airport> Graph::getAirports() {
    return Airports;
 }
-
+// get the airports that are not connected in the graph
 const std::unordered_map<int, Airport> Graph::getairports() {
    return airports;
 }
 
-
+// get airport information
 void Graph::printAirportInfo() {
     for (auto air : Airports) {
         std::cout << air.second.getID() << "\t" << air.second.getName() << std::endl;
     }
 }
 
-
+// get the adjacency matrix of the graph related to the routes and their connected 
 std::unordered_map<int, std::unordered_map<int, Edge>> Graph::getAdjacency_matrix() {
     return adjacency_matrix;
 }
