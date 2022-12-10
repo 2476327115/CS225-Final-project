@@ -50,7 +50,6 @@ std::vector<int> BFS::traverseAll(const Graph &graph, int srcID)
             }
         }
     }
-    std::cout << "the number of airports we traverse is " << airports.size() << std::endl;
     return airports; //return vector
 }
 
@@ -92,7 +91,6 @@ std::vector<int> BFS::traverse_with_given_step(const Graph &graph, int srcID, in
             }
         }
     }
-    std::cout << "the number of airports we traverse is " << airports.size() << std::endl;
     return airports; //return vector
 }
 
