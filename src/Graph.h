@@ -17,7 +17,16 @@ class Graph {
         std::unordered_map<int, Airport> Airports;
         // The airports data parsed from airports.dat
         std::unordered_map<int, Airport> airports;
+        
+        /**
+         * splits the string into pieces of strings by the pattern given. Return the vector of
+         * splitted strings
+         * @param str the strings needed to split
+         * @param pattern the pattern we want to split
+        */
         std::vector<std::string> split(std::string str, std::string pattern);
+        // the number of invalid routes
+        int invalid;
         
 
     public:
@@ -66,17 +75,31 @@ class Graph {
          * @param dstID - the destination airport ID of the route
         **/
         void insertEdge(Route route, int srcID, int dstID);
-        void printAirportInfo();
-        int getAirportNum();
-        const std::unordered_map<int, std::unordered_map<int, Edge>> getMatrix();
-        const std::unordered_map<int, Airport> getAirports();
-        // void createGraph();
 
+        // get airport information
+        void printAirportInfo();
+
+        // get the number of the airports connected in the graph
+        int getAirportNum();
+
+        // get the airports that are connected in the graph
+        const std::unordered_map<int, Airport> getAirports();
+
+        // get the airports that are not connected in the graph
         const std::unordered_map<int, Airport> getairports();
 
+        // get the airport name given by the airport id
         std::string getAirportName(int id);
+
+        // get the airport id given by its name
         int getAirportId(std::string name);
-        
+
+        // get the adjacency matrix of the graph related to the routes and their connected 
         std::unordered_map<int, std::unordered_map<int, Edge>> getAdjacency_matrix();
+        
+        // equality operator
         bool operator==(const Graph & other);
+
+        // get the number of invalid routes
+        int getInvalidRoute() {return invalid;}; 
     };

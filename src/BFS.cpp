@@ -138,15 +138,16 @@ std::vector<int> BFS::traverse_with_given_step(const Graph &graph, int srcID, in
             }
         }
 
-        if(airports.back() != destID){
-            std::cout << "the source and destination airport are not connected !! "<< std::endl;
-        }
+        
+    }
+    if(airports.back() != destID){
+        std::cout << "the source and destination airport are not connected !! "<< std::endl;
     }
     return airports; //return vector
  }
 
  void BFS::insertAmatrix(Graph graph){
-    std::unordered_map<int, std::unordered_map<int, Edge>> temp = graph.getMatrix();
+    std::unordered_map<int, std::unordered_map<int, Edge>> temp = graph.getAdjacency_matrix();
     std::unordered_map<int, std::unordered_map<int, Edge>>::iterator itr1;
     for (itr1 = temp.begin(); itr1 != temp.end(); ++itr1)
     {
@@ -170,7 +171,7 @@ std::vector<int> BFS::traverse_with_given_step(const Graph &graph, int srcID, in
     return;
  }
 
- std::unordered_map<int, std::string> BFS::bfsHelper(int srcID){
+    std::unordered_map<int, std::string> BFS::bfsHelper(int srcID){
     std::unordered_map<int, std::string> dist;//store the path
     std::unordered_map<int, bool> sptSet; // iterator or not
     std::unordered_map<int, int> step;//the number of transfer steps

@@ -156,12 +156,14 @@ TEST_CASE("TEST construct graph # real data", "[Graph]") {
     int route = 0;
     for (auto it : graph.getAdjacency_matrix()) {
         for (auto b : it.second) {
-            route++;
+            route += b.second.getWeights();
+            
         }
     }
-    // std::cout << "Route number:" << route << std::endl;
-    // REQUIRE(graph.getAirports().size() > 7000);
-    REQUIRE(route > 35000);
+    int invalid = graph.getInvalidRoute();
+    std::cout << "Route number:" << route << std::endl;
+    REQUIRE(graph.getAirports().size() > 3000);
+    REQUIRE(route + invalid == 67663);
 }
 
 TEST_CASE("TEST BFS # real data", "[Graph]") {
@@ -211,9 +213,10 @@ TEST_CASE("TEST page rank # large dataset", "[Graph]") {
     for (auto i : v) {
         std:: cout << i << "\t";
     }
-    std::cout << std::endl;
     Airport air = pg.findImportantAP();
     std::cout << air.getName() << std::endl;
+    REQUIRE(air.getName() == "Houari Boumediene Airport");
+    
 }
 
 // This test consume so much time. Maybe reduce the time diffculty in next phase
