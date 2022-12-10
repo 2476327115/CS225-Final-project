@@ -58,16 +58,6 @@ TEST_CASE("TEST parseFile # small dataset", "[Graph]") {
     std::string route_file = "../tests/Route_test_small.dat";
     Graph graph = Graph(airport_file, route_file);
 
-    std::cout << graph.getAdjacency_matrix().size() << std::endl;
-    std::cout << "srcID\tdstID\tAirline" << std::endl;
-    for (auto iter0 : graph.getAdjacency_matrix()) {
-        for (auto iter1 : iter0.second) {
-            for (auto iter2 : iter1.second.getRoutes()) {
-                std::cout << iter0.first << "\t" << iter1.first << "\t" << iter2.first << "\t" << std::endl;
-            }
-        }
-    }
-
     REQUIRE (graph.getAdjacency_matrix()[0][1].getWeights() == 1);
     REQUIRE (graph.getAdjacency_matrix()[0][2].getWeights() == 1);
     REQUIRE (graph.getAdjacency_matrix()[0][3].getWeights() == 0);
@@ -98,16 +88,7 @@ TEST_CASE("TEST find important airport # small dataset", "[PageRank]") {
     // std::unordered_map<int, double> target_m;
     std::vector<int> r = pg.getRank_AP();
     std::vector<int> target_r = {1, 2, 3, 0};
-    // target_m.insert({0, 0.515});
-    // target_m.insert({1, 1.292});
-    // target_m.insert({2, 1.164});
-    // target_m.insert({3, 1.011});
-    // target_m.insert({4, 0.150});
-    // for(auto &it : m){
-    //     std::cout << it.first << " " << it.second << std::endl;
-    // }
     REQUIRE(r == target_r);
-    // REQUIRE(m == target_m);
 }
 
 TEST_CASE("BFS # small dataset", "[BFS]") {
@@ -118,7 +99,6 @@ TEST_CASE("BFS # small dataset", "[BFS]") {
     std::vector<int> all0 = bfs.traverseAll(graph, 0);
     std::vector<int> all1 = bfs.traverseAll(graph, 1);
     std::vector<int> all2 = bfs.traverseAll(graph, 4);
-    std:: cout << all0.size() << std::endl;
     REQUIRE (all0.size() == all1.size());
 }
 
@@ -130,9 +110,6 @@ TEST_CASE("TEST BFS with dest # small dataset", "[BFS]") {
     std::vector<int> dest0 = bfs.traverse_with_dest(graph, 0, 3);
     std::vector<int> dest1 = bfs.traverse_with_dest(graph, 0, 4);
     REQUIRE(dest0.back() == 3);
-    // for(auto it : dest1){
-    //     std::cout << it << std::endl;
-    // }
     REQUIRE(dest1.back() != 4);
 }
 
@@ -141,7 +118,6 @@ TEST_CASE("TEST shortest path # small dataset", "[Dijkstra]") {
     std::string route_file = "../tests/Route_test_small.dat";
     Graph graph = Graph(airport_file, route_file);
     Dijkstra dijkstra = Dijkstra(graph);
-    // std::cout << " Dijkstra ok " << std::endl ;
     std::string str0 = dijkstra.getshortpath(graph, 0, 3);
     std::string str1 = dijkstra.getshortpath(graph, 0, 1);
     REQUIRE(str0 == "0 1 3 ");
@@ -152,7 +128,6 @@ TEST_CASE("TEST construct graph # real data", "[Graph]") {
     std::string airport_file = "../data/airports.dat";
     std::string route_file = "../data/routes.dat";
     Graph graph = Graph(airport_file, route_file);
-    // std::cout << "Airport number:" << graph.getAirports().size() << std::endl;
     int route = 0;
     for (auto it : graph.getAdjacency_matrix()) {
         for (auto b : it.second) {
@@ -161,7 +136,6 @@ TEST_CASE("TEST construct graph # real data", "[Graph]") {
         }
     }
     int invalid = graph.getInvalidRoute();
-    std::cout << "Route number:" << route << std::endl;
     REQUIRE(graph.getAirports().size() > 3000);
     REQUIRE(route + invalid == 67663);
 }
@@ -172,7 +146,7 @@ TEST_CASE("TEST BFS # real data", "[Graph]") {
     Graph graph = Graph(airport_file, route_file);
     BFS bfs = BFS(graph);
     std::vector<int> all0 = bfs.traverseAll(graph, 3364);
-    std::cout << all0.size() << std::endl;
+    REQUIRE(all0.size() == 3166);
 }
 
 
@@ -200,7 +174,7 @@ TEST_CASE("TEST parseFile # large dataset", "[Graph]") {
     std::cout << "large dataset Airport number: " << graph.getAirports().size() << std::endl;
     BFS bfs = BFS(graph);
     std::vector<int> bfsResult = bfs.traverseAll(graph, 220);
-    std::cout << "bfs size:"<< bfsResult.size() << std::endl;
+    REQUIRE(bfsResult.size() == 30);
 }
 
 TEST_CASE("TEST page rank # large dataset", "[Graph]") {
@@ -227,37 +201,26 @@ TEST_CASE("Find important airpors # real data", "[PageRank]") {
     std::string route_file = "../data/routes.dat";
     Graph graph = Graph(airport_file, route_file);
     PageRank pr = PageRank();
+    auto start = std::chrono::steady_clock::now();
     pr.pageRank(graph, 10, 0.85);
+    auto end = std::chrono::steady_clock::now();
+    std::chrono::duration<double> elapsed_seconds = end-start;
+    std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+
+    std::vector<int> v = pr.getRank_AP();
+    int j = 0;
+    for (auto i : v) {
+        std:: cout << i << "\t";
+        j++;
+        if(j > 10) break;
+    }
+    std::cout << std::endl;
     Airport air = pr.findImportantAP();
     std::cout << air.getName() << std::endl;
 }
 */
 
-// TEST_CASE("Find important airpors # real data", "[PageRank]") {
-//     std::string airport_file = "../data/airports.dat";
-//     std::string route_file = "../data/routes.dat";
-//     Graph graph = Graph(airport_file, route_file);
-//     PageRank pr = PageRank();
-//     auto start = std::chrono::steady_clock::now();
-//     pr.pageRank(graph, 10, 0.85);
-//     auto end = std::chrono::steady_clock::now();
-//     std::chrono::duration<double> elapsed_seconds = end-start;
-//     std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
 
-//     // Airport air = pr.findImportantAP();
-//     // std::cout << air.getName() << std::endl;
-
-//     std::vector<int> v = pr.getRank_AP();
-//     int j = 0;
-//     for (auto i : v) {
-//         std:: cout << i << "\t";
-//         j++;
-//         if(j > 10) break;
-//     }
-//     std::cout << std::endl;
-//     Airport air = pr.findImportantAP();
-//     std::cout << air.getName() << std::endl;
-// }
 
 TEST_CASE("TEST bfsshortest step # small dataset", "[BFS]") {
     std::string airport_file = "../tests/Airport_test_small.dat";
