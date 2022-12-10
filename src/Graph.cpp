@@ -207,8 +207,6 @@ void Graph::parseEdges(const std::string& filename) {
     }
     // std::cout << "the number of invalid routes is " << invalid << std::endl;
     Route_File.close();
-    
-    
 }
 
 std::vector<std::string> Graph::split(std::string str,std::string pattern)

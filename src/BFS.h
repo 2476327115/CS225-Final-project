@@ -13,8 +13,9 @@ class BFS{
 public:
     //constructor of BFS
     BFS(const Graph & graph);
-    std::vector<int> traverseAll(const Graph & graph, int srcID); //tranverse vertices(airports)
-    std::vector<int> traverse_with_dest(const Graph & graph, int srcID, int destID); //tranverse airports between two airports
+    std::vector<int> traverseAll(const Graph & graph, int srcID);                           // traverse vertices(airports)
+    std::vector<int> traverse_with_dest(const Graph & graph, int srcID, int destID);        // traverse airports between two airports
+    std::vector<int> traverse_with_given_step(const Graph & graph, int srcID, int step);    // traverse vertices(airports) with given step
     std::unordered_map<int, std::string> bfsHelper(int srcID);
     std::string bfsGetShortstep(int srcID, int dstID);
     void insertAmatrix(Graph graph);

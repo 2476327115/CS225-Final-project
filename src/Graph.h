@@ -24,6 +24,12 @@ class Graph {
         //default constructor
         Graph() {};
 
+        Graph(std::unordered_map<int, std::unordered_map<int, Edge>> a, std::unordered_map<int, Airport> b) {
+            adjacency_matrix = a;
+            airports = b;
+            Airports = b;
+        }
+
         /**
         * constructor to create the graph and parse the data of airports and routes into it.
         * The graph has the airports as vertices and routes as edges. In this case, we consider
