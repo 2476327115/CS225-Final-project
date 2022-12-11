@@ -11,13 +11,26 @@
 
 class Dijkstra {
     public:
+    /*Default constructor*/
     Dijkstra (Graph graph);
+    /* Dijkstra's Algorithm:the input is the start airport, the output is unordered_map that store the shortest 
+     * way go to all other airport 
+     */
     std::unordered_map<int,std::string> dijkstra(int srcID);
+
+    /*insert weight_matrix */
     void insertWeightmatrix();
+
+    /*insert Adjacency matrix from graph*/
     void insertAdjacencymatrix(Graph graph);
+
+    /*insert Airports from graph*/
     void insertAirports(Graph graph);
+
+    /*Enter the start and end airports, find the shortest pass*/
     std::string getshortpath(Graph graph, int srcID, int dstID); 
-    std::vector<int> getAdjacencyvector(int airportID);
+    
+    /*return the Weightmatrix*/
     std::unordered_map<int, std::unordered_map<int, double>> getadjacmatrix();
 
     private:
