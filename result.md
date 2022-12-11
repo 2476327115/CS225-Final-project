@@ -43,7 +43,7 @@ We use $PR(u) = \frac{1-d}{N}+d\sum\limits_{v \in B_u} \frac{PR(v)}{L(v)}$ as th
 
 To implement this algorithm, we have two unordered_map. One has the airportID as keys and the corresponding airport object . The other is the adjacency matrix of the given graph. In the adjacent matrix, the key is the source airport ID and the value is another unordered_map which has the destination airport ID as keys and the Edge between the source and destination as value. Thus, to get the out degree, which is the number of routes from the given airports, we can just calculate the size of value of the adjacency matrix, which is what getOutDegree(int srcID) does. Before we start the Page Rank, we normalize the initial page rank value of each airport to $\frac{1}{Airports.size()}$ so that the sum of the page rank value should be 1. Then, using the formula of the Page Rank algorithms, each value will be the product of the damping factor with $\sum\limits_{v \in B_u} \frac{PR(v)}{L(v)}$ plus $1-d$. The PageRank computations require iterations, which uses the collection to adjust the approximate PageRank value to make it more closely reflect the theoretical true value. After iterations, the result should approach a stable state, which can be the final rank of the importance of the airports.
 
-To test the PageRank algorithm. We first use the sample test case. We created a sample graph with several airports and tried to calculate the rank of their importance. Because the graph is pretty small, we can get the rank order and conclude that 1 is the airport ID of the important airport because it has the greatest incoming edges. To make sure we are on the right track, we used the page rank calculator online to get the rank order of the graph. The result of our implementation of PageRank is the same as expected. Then, we use the small subset of the real data set to test the PageRank algorithms and we also get the same as expected value that Houari Boumediene Airport is the most important airport since it has the most incoming edges. Then, we use the whole data set and we found that our most important airport is Hartsfield Jackson Atlanta International Airport and we get the rank of ten most important airports, which is roughly similar to reality in 2014. Since the time complexity is slow after iterations and data is huge, we only run ten iterations for the Page Rank, which means the result we get from our implementation cannot be precise enough, but we roughly get the right result of the rank. 
+To test the PageRank algorithm. We first use the sample test case. We created a sample graph with several airports and tried to calculate the rank of their importance. Because the graph is pretty small, we can get the rank order and conclude that 1 is the airport ID of the important airport because it has the greatest incoming edges. To make sure we are on the right track, we used the page rank calculator online to get the rank order of the graph. The result of our implementation of PageRank is the same as expected. Then, we use the small subset of the real data set to test the PageRank algorithms and we also get the same as expected value that Houari Boumediene Airport is the most important airport since it has the most incoming edges. Then, we use the whole data set and we found that our most important airport is Hartsfield Jackson Atlanta International Airport and we get the rank of ten most important airports, which is roughly similar to reality in 2014. Since the time complexity is slow using iterations and data is huge, we only run ten iterations for the Page Rank, which means the result we get from our implementation cannot be precise enough, but we roughly get the right result of the rank. 
 
 ## Answer to Leading Question
 
@@ -53,3 +53,17 @@ We have two solutions to the problem of finding the most suitable paths - bfs an
 
 Another function we provide is to find the most important airports in openflight. Our group found the pagerank algorithm used by Google to reach the conclusion that the pagerank algorithm can find the exact result in a relatively small time complexity. In our test, Hartsfield Jackson Atlanta International Airport is the most important airport in the world. In addition, we also provide a function to find the ranking of important airports around a given airport. These two solutions can find the most important airports smoothly.
 
+## Conclusion
+
+
+
+
+# video (plans)
+
+## Your Goals(1-2)
+    
+
+## Your Development and Conclusions(5-8)
+   
+
+## Your big Conclusions(1-2)
