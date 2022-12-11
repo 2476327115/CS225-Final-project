@@ -3,8 +3,8 @@
 ### The final project in UIUC Fall 2022
 
 ## Leading Question 
-   
-   Our group decide to the porject "Open flight" Our goul is to find any shortest ath algorithm to find preferred routes and make a graphical output on projected onto a world map. To find the weight for the graph, we use the airport data to compute the distance and use that as the weight. It is very useful and applicable. Finding the shortest path algorithms of routes and make the output graphically can help people find the shortest and preferred routes. Working on the datasets of the open flights can help us better understand connectivity and human geography. Throughout this final project, we will use BFS, Dijkstra's algorithm, etc to resolve the problems.
+
+Our group decided to do the project "Open flight". Our goal is to find the most convenient path and the most important airport based on the given data. Throughout this final project, we used BFS, Dijkstra's algorithm, and PageRank to achieve our goal.
    
    
 ## Document
@@ -21,6 +21,31 @@ https://raw.githubusercontent.com/jpatokal/openflights/master/data/routes.dat
 
 which can be find in `/data` directory.
 
+## How to run the program
+The program can be ran by using the 'main' executable:
+```
+make main
+./main
+```
+The user would be prompted with instructions on how to run the various operations:
+```
+[0] Use BFS to traverse all the graph
+[1] Use BFS to find shortest path between two airports
+[2] Use Dijkstra to find shortest path between two airports
+[3] Use pagerank to find the most important airport in the dataset
+[4] Use pagerank to find the most important airport in a given range
+[9] Quit
+```  
+The operations may require the user to provide custom inputs i.e. airport ID.  
+After computation, the result would be printed out in the terminal.  
+
+
+## Test Description
+Our tests can be ran with
+```
+make test
+./test
+```  
 
 ## Timeline
 
