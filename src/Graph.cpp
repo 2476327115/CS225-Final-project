@@ -23,9 +23,6 @@ Graph::Graph(std::string& Airport_File, std::string& Route_File){
 
 
 void Graph::parseVertices(const std::string& filename){
-
-
-
     std::ifstream Ap_File(filename);
     std::string ID;
     std::string Name;
@@ -166,8 +163,6 @@ void Graph::parseEdges(const std::string& filename) {
         }
 
     }
-
-    std::cout << "the number of invalid routes is " << invalid << std::endl;
     Route_File.close();
 }
 
