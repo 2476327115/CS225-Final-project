@@ -1,5 +1,7 @@
 #include "Route.h"
-Route::Route(){
+
+// Default constructor
+Route::Route() {
     AirlineID_ = 0;
     Airline_ = "";
     srcID_ = 0; 
@@ -7,7 +9,15 @@ Route::Route(){
     stop_ = 0;
 }
 
-Route::Route(int AirlineID, std::string Airline, int srcID, int dstID, int stop){
+/**
+ * Constructor with the given information of an route
+ * @param AirlineID
+ * @param Airline
+ * @param srcID
+ * @param dstID
+ * @param stop
+ */
+Route::Route(int AirlineID, std::string Airline, int srcID, int dstID, int stop) {
     AirlineID_ = AirlineID;
     Airline_ = Airline ;
     srcID_ = srcID; 
@@ -15,38 +25,62 @@ Route::Route(int AirlineID, std::string Airline, int srcID, int dstID, int stop)
     stop_ = stop;
 }
 
+/**
+ * set the airline ID
+ * @param airlineId
+ */
 void Route::setAirlineID(int airlineId) {
     AirlineID_ = airlineId;
 }
 
+/**
+ * set the airline name
+ * @param airline
+ */
 void Route::setAirline(std::string airline) {
     Airline_ = airline;
 }
 
+/**
+ * set the destination airport ID
+ * @param dstId
+ */
 void Route::setDstID(int dstId) {
     dstID_ = dstId;
 }
 
+/**
+ * set the source airport ID
+ * @param srcId
+ */
 void Route::setSrcID(int srcId) {
     srcID_ = srcId;
 }
 
+/**
+ * set the number of stop
+ * @param stop
+ */
 void Route::setStop(int stop) {
     stop_ = stop;
 }
 
-int Route::getsrcID(){
+// get the source airport ID
+int Route::getsrcID() {
     return srcID_;
 }
 
-int Route::getdstID(){
+// get the destination airport ID
+int Route::getdstID() {
     return dstID_;
 }
 
-int Route::getAirlineID(){
+// get the airline ID
+int Route::getAirlineID() {
     return AirlineID_;
 }
 
+// equality operator
 bool Route::operator==(const Route & other) const {
     if(AirlineID_ != other.AirlineID_) return false;
     if(Airline_ != other.Airline_) return false;

@@ -7,7 +7,7 @@
 #include "Dijkstra.h"
 #include <utility>
 typedef std::pair<int, double> PAP; // pair path
-Dijkstra::Dijkstra(Graph graph)
+Dijkstra::Dijkstra(Graph graph) 
 {
     insertAdjacencymatrix(graph);
     insertAirports(graph);
@@ -17,7 +17,7 @@ Dijkstra::Dijkstra(Graph graph)
 
 void Dijkstra::insertAdjacencymatrix(Graph graph)
 {
-    std::unordered_map<int, std::unordered_map<int, Edge>> temp = graph.getMatrix();
+    std::unordered_map<int, std::unordered_map<int, Edge>> temp = graph.getAdjacency_matrix();
     std::unordered_map<int, std::unordered_map<int, Edge>>::iterator itr1;
     for (itr1 = temp.begin(); itr1 != temp.end(); ++itr1)
     {
@@ -54,7 +54,7 @@ void Dijkstra::insertWeightmatrix()
             double weight = 0.0;
             if (tempedge.getWeights() != 0)
             {
-                weight = (double)(1 / (double)(tempedge.getWeights()));
+                weight = (double)(1 / (double)(tempedge.getWeights())); //get the value of 1/number of routes in map
             }
             else
             {
@@ -67,13 +67,12 @@ void Dijkstra::insertWeightmatrix()
 
 std::unordered_map<int, std::string> Dijkstra::dijkstra(int srcID)
 {
-    std::unordered_map<int, std::string> dist;
-    std::unordered_map<int, double> distweight;
+    std::unordered_map<int, std::string> dist;//store the path
+    std::unordered_map<int, double> distweight;//store the route weight 
     std::unordered_map<int, bool> sptSet; // iterator or not
-    std::unordered_map<int, int> step;
-    std::unordered_map<int, bool> finish;
+    std::unordered_map<int, int> step;//the number of transfer steps
     std::queue<PAP> priorityQ;
-    for (auto itr : Airports_)
+    for (auto itr : Airports_)        //initialize data
     {
         int tempid = itr.first;
         sptSet[tempid] = false;
@@ -86,7 +85,7 @@ std::unordered_map<int, std::string> Dijkstra::dijkstra(int srcID)
     priorityQ.push(PAP(srcID, 0.0));
     while (!priorityQ.empty())
     {
-        while (priorityQ.empty() == false && sptSet[(priorityQ.front()).first] == true)
+        while (priorityQ.empty() == false && sptSet[(priorityQ.front()).first] == true) //each airport only take one time
             priorityQ.pop();
         if (priorityQ.empty() == true)
             return dist;
@@ -96,9 +95,9 @@ std::unordered_map<int, std::string> Dijkstra::dijkstra(int srcID)
         int tmepid = temppair.first;
         double tempvalue = distweight[tmepid];
         sptSet[tmepid] = true;
-        std::unordered_map<int, double> adjmap = weight_matrix[tmepid];
+        std::unordered_map<int, double> adjmap = weight_matrix[tmepid]; 
 
-        for (auto itr2 : adjmap)
+        for (auto itr2 : adjmap) //iterater the weight_matrix
         {
             double tempminvalue = weight_matrix[tmepid][itr2.first];
             double minvalue;
@@ -117,18 +116,18 @@ std::unordered_map<int, std::string> Dijkstra::dijkstra(int srcID)
             {
                 minvalue = tempminvalue;
                 deter = 1 / tempminvalue;
-            }
+            } //get the past weight and new weight
             int tempstep = step[tmepid] + 1;
-            if (tempstep < step[itr2.first])
+            if (tempstep < step[itr2.first]) //if new step is smaller than past step
             {
                 step[itr2.first] = tempstep;
                 distweight[itr2.first] = minvalue;
                 dist[itr2.first] = dist[tmepid] + std::to_string(itr2.first) + ' ';
                 priorityQ.push(PAP(itr2.first, minvalue));
             }
-            else if (tempstep == step[itr2.first])
+            else if (tempstep == step[itr2.first]) //if new step is equal to past step
             {
-                if (deter > (double)(1 / tempminvalue))
+                if (deter > (double)(1 / tempminvalue)) //we want the larger number of airline with same transfer steps number
                 {
                     distweight[itr2.first] = minvalue;
                     dist[itr2.first] = dist[tmepid] + std::to_string(itr2.first) + ' ';
@@ -158,12 +157,8 @@ std::string Dijkstra::getshortpath(Graph graph, int srcID, int dstID)
     srcID_ = srcID;
     dstID_ = dstID;
     std::unordered_map<int, std::string> result = dijkstra(srcID);
-    // for(auto itr: result){
-    //     std::cout<<itr.first<<itr.second<<std::endl;
-    // }
     std::string path = result[dstID];
     return path;
-    ///
 }
 std::unordered_map<int, std::unordered_map<int, double>> Dijkstra::getadjacmatrix()
 {

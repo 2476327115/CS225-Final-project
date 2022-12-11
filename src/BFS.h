@@ -11,16 +11,19 @@
 
 class BFS{
 public:
+    //constructor of BFS
     BFS(const Graph & graph);
-    // BFS(const Graph & graph, int airportID);
-    std::vector<int> traverseAll(const Graph & graph, int srcID);
-    std::vector<int> traverse_with_dest(const Graph & graph, int srcID, int destID);
+    std::vector<int> traverseAll(const Graph & graph, int srcID);                           // traverse vertices(airports)
+    std::vector<int> traverse_with_dest(const Graph & graph, int srcID, int destID);        // traverse airports between two airports
+    std::vector<int> traverse_with_given_step(const Graph & graph, int srcID, int step);    // traverse vertices(airports) with given step
+    std::unordered_map<int, std::string> bfsHelper(int srcID);
+    std::string bfsGetShortstep(int srcID, int dstID);
+    void insertAmatrix(Graph graph);
+    void insertAirports(Graph graph);
 
 private:
-    //int start_;
-    Graph airport_graph_;
-    //std::queue<int> BFS_queue;
-    //std::vector<bool> visited;
-    int number;
-    std::unordered_map<int, std::unordered_map<int, Edge>> matrix_;
+    Graph airport_graph_; // the graph with all the data
+    int number; // number of airports
+    std::unordered_map<int, std::unordered_map<int, Edge>> matrix_;// a matrix of graph which contains srcID of all the airports
+    mutable std::unordered_map<int, Airport> Airports_;
 };
