@@ -134,19 +134,6 @@ std::unordered_map<int, std::string> Dijkstra::dijkstra(int srcID)
                     priorityQ.push(PAP(itr2.first, minvalue));
                 }
             }
-            int tempstep=step[tmepid]+1;
-            if(tempstep<step[itr2.first]){
-                step[itr2.first]=tempstep;
-                distweight[itr2.first]=minvalue;
-                dist[itr2.first]=dist[tmepid]+std::to_string(itr2.first)+' ';
-                priorityQ.push(PAP(itr2.first,minvalue));
-            }else if(tempstep==step[itr2.first]){
-                if(deter>(double)(1/tempminvalue)){
-                    distweight[itr2.first]=minvalue;
-                    dist[itr2.first]=dist[tmepid]+std::to_string(itr2.first)+' ';
-                    priorityQ.push(PAP(itr2.first,minvalue));
-                }
-            }        
         }
     }
     return dist;

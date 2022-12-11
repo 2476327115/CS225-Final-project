@@ -92,7 +92,10 @@ void Graph::parseVertices(const std::string& filename){
             double longtitude = std::stod(Longtitude);
             // create an object of the airport data we parse
             Airport airport(Id, Name, City, Country, latitude, longtitude);
+<<<<<<< Updated upstream
             // insert the airport as a vertex;
+=======
+>>>>>>> Stashed changes
             insertVertex(Id, airport);
             // clear the string 
             ID.clear();
