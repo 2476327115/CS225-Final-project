@@ -37,7 +37,7 @@ class Dijkstra {
     mutable std::unordered_map<int, std::unordered_map<int, Edge>> adjac_matrix;
     mutable std::unordered_map<int, std::unordered_map<int, double>> weight_matrix;
     mutable std::unordered_map<int, Airport> Airports_;
-    int NumAirports;
+    // int NumAirports;
     Graph g_;
     int srcID_;
     int dstID_;
