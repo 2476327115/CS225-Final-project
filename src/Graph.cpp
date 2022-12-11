@@ -23,9 +23,6 @@ Graph::Graph(std::string& Airport_File, std::string& Route_File){
 
 
 void Graph::parseVertices(const std::string& filename){
-
-
-
     std::ifstream Ap_File(filename);
     std::string ID;
     std::string Name;
