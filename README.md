@@ -49,7 +49,9 @@ After computation, the result would be printed out in the terminal.
 
 
 ## Test Description
-Our tests can be ran with
+Our testcase can be found in `/test` 
+
+Our tests can be run with
 ```
 make test
 ./test
