@@ -35,7 +35,7 @@ std::unordered_map<int, double> PageRank::pageRank(const Graph & graph, int time
         rank_[it.first] = 1.0 / (double) number_ap;
     }
     // calculate the damping value
-    double damping_value = (1.0 - damping_factor);
+    double damping_value = (1.0 - damping_factor) / (double) airports.size();
     // start the iterations for PageRank
     for(int i = 0; i < time; i++){
         // calculate page rank value of airport x 
