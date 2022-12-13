@@ -9,7 +9,7 @@ Our group decided to do the project "Open flight". Our goal is to find the most 
    
 ## Document and Video
 
-Our team contract, team proposal and FP_Log can be find in `/document` directory.
+Our team contract, team proposal and FP_Log can be find in [`/document`](https://github.com/2476327115/CS225-Final-project/tree/main/Document) directory.
 
 ## Deliverables
 
@@ -27,7 +27,7 @@ We use data of airport and route:
 https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat
 https://raw.githubusercontent.com/jpatokal/openflights/master/data/routes.dat
 
-which can be find in `/data` directory.
+which can be find in [`/data`](https://github.com/2476327115/CS225-Final-project/tree/main/data) directory.
 
 ## How to run the program
 The program can be ran by using the 'main' executable:
@@ -49,7 +49,7 @@ After computation, the result would be printed out in the terminal.
 
 
 ## Test Description
-Our testcase can be found in `/test` 
+Our testcase can be found in [`/tests`](https://github.com/2476327115/CS225-Final-project/tree/main/tests) 
 
 Our tests can be run with
 ```
