@@ -72,7 +72,7 @@ Write descriptive README and final report(due: 12.4)
 Project close-out, inspection and final presentation(due: 12.8)
 
 ## Team
-- Jin Fan
-- Gezhi Zou
-- Xiaoyang Tian
-- Yanxin Jiang
+- Jin Fan (jinf2)
+- Gezhi Zou (gezhiz2)
+- Xiaoyang Tian (xt12)
+- Yanxin Jiang (yanxinj2)
