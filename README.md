@@ -12,6 +12,7 @@ Our group decided to do the project "Open flight". Our goal is to find the most 
 Our team contract, team proposal and FP_Log can be find in [`/document`](https://github.com/2476327115/CS225-Final-project/tree/main/Document) directory.
 
 ## Deliverables
+All code we have done can be found in [`/src`](https://github.com/2476327115/CS225-Final-project/tree/main/src)
 
 Report: https://github.com/2476327115/CS225-Final-project/blob/main/result.md
 
