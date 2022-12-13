@@ -11,6 +11,12 @@ Our group decided to do the project "Open flight". Our goal is to find the most 
 
 Our team contract, team proposal and FP_Log can be find in `/document` directory.
 
+## Deliverables
+
+Report:https://github.com/2476327115/CS225-Final-project/blob/main/result.md
+Presentation Video:https://youtu.be/23VsYPCS8CU
+Presentation Slides:https://github.com/2476327115/CS225-Final-project/blob/main/Final%20Project.pdf
+
 ## Dataset Acquisition
 
 We use data of airport and route:
