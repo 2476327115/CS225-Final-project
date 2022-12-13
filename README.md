@@ -7,7 +7,7 @@
 Our group decided to do the project "Open flight". Our goal is to find the most convenient path and the most important airport based on the given data. Throughout this final project, we used BFS, Dijkstra's algorithm, and PageRank to achieve our goal.
 
    
-## Document and Video
+## Document
 
 Our team contract, team proposal and FP_Log can be find in [`/document`](https://github.com/2476327115/CS225-Final-project/tree/main/Document) directory.
 
