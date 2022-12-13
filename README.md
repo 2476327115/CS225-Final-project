@@ -70,3 +70,9 @@ Write Page Rank algorithm and other code completely(due: 11.27)
 Write descriptive README and final report(due: 12.4)
 
 Project close-out, inspection and final presentation(due: 12.8)
+
+## Team
+- Jin Fan
+- Gezhi Zou
+- Xiaoyang Tian
+- Yanxin Jiang
