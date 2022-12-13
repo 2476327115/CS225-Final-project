@@ -6,10 +6,10 @@
 
 ## Specific Tasks Completed (and by who)
 
-  1.Rewrite proposal(by Xiaoyang Tian,Yanxin Jiang,Gezhi Zou,Jin Fan)
-  2.Determine the algorithm to use for the final project: BFS,Dijkstra’s Algorithm and Page Rank Algorithm.(by Xiaoyang Tian,Yanxin Jiang,Gezhi Zou,Jin Fan)
+  1.Rewrite proposal (by Xiaoyang Tian,Yanxin Jiang,Gezhi Zou,Jin Fan)
+  2.Determine the algorithm to use for the final project: BFS, Dijkstra’s Algorithm and Page Rank Algorithm. (by Xiaoyang Tian, Yanxin Jiang, Gezhi Zou, Jin Fan)
   3.Write airport class code in github (Gezhi Zou)
-  4.Write the meeting note(Xiaoyang Tian)
+  4.Write the meeting note (Xiaoyang Tian)
 
 ## Problems Encountered 
 
